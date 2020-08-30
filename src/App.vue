@@ -10,9 +10,7 @@
 
 <script>
 	import Test from './components/Test.vue'
-	import db from "../fire.js";
-
-	let productsRef = db.ref("products");
+	import { db } from '../fire';
 
 	export default {
 		name: 'app',
@@ -21,11 +19,18 @@
 		},
 		data() {
 			return {
-				products: [],
+				products: []
 			}
 		},
-		firebase: {
-			products: productsRef
+		created: function() {
+			db.collection('products').get()
+			.then(snapshot => {
+				snapshot.forEach(doc => {
+					let item = doc.data()
+					item.id = doc.id
+					this.products.push(item)
+				})
+			})
 		},
 	}
 </script>

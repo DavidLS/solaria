@@ -1,17 +1,15 @@
-import Firebase from 'firebase'
-import "firebase/firestore";
+import * as firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: process.env.VUE_APP_ENV_VARIABLE,
-    authDomain: "solaria-69e24.firebaseapp.com",
-    databaseURL: "https://solaria-69e24.firebaseio.com",
-    projectId: "solaria-69e24",
-    storageBucket: "solaria-69e24.appspot.com",
-    messagingSenderId: "800252403030",
-    appId: "1:800252403030:web:3ba62953ff730152350af7"
-};
+	apiKey: process.env.VUE_APP_ENV_VARIABLE,
+	authDomain: "solaria-69e24.firebaseapp.com",
+	databaseURL: "https://solaria-69e24.firebaseio.com",
+	projectId: "solaria-69e24",
+	storageBucket: "solaria-69e24.appspot.com",
+	messagingSenderId: "800252403030",
+	appId: "1:800252403030:web:3ba62953ff730152350af7"
+  };
 
-let app = Firebase.initializeApp(firebaseConfig);
-let db = app.database();
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export default db;
+export const db = firebaseApp.firestore();
