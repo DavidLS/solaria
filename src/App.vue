@@ -3,52 +3,48 @@
 	<div id="app" class="container">
 		<img alt="Vue logo" src="./assets/logo.png">
 
-		<h1>Lista de productos</h1>
+		<h1>Desayunos en Casa Solaria</h1>
 
 		<b-form @submit="onSubmit" @reset="onReset" v-if="show">
-			<b-form-group
-				id="input-group-1"
-				label="Email address:"
+
+			<b-form-group 
+				id="input-group-1" 
+				label="Número de habitación" 
 				label-for="input-1"
-				description="We'll never share your email with anyone else."
+				description="Number of guests in the room"
+				class="text-left p-4"
 			>
-			<b-form-input
-				id="input-1"
-				v-model="form.email"
-				type="email"
-				required
-				placeholder="Enter email"
-			/>
+				<b-form-input
+					id="input-1"
+					v-model="form.name"
+					required
+					placeholder="Introduzca su número de habitación"
+					class="w-50"
+				></b-form-input>
 			</b-form-group>
 
-			<b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+			<b-form-group 
+				id="input-group-2" 
+				label="Cantidad de huéspedes en la habitación" 
+				label-for="input-2"
+				description="Room number"
+				class="text-left p-4"
+			>
 				<b-form-input
 					id="input-2"
 					v-model="form.name"
 					required
-					placeholder="Enter name"
-				/>
+					placeholder="Introduzca la cantidad de huéspedes"
+					class="w-50"
+				></b-form-input>
 			</b-form-group>
 
-			<b-form-group id="input-group-3" label="Food:" label-for="input-3">
-				<b-form-select
-				id="input-3"
-				v-model="form.food"
-				:options="foods"
-				required
-				/>
-			</b-form-group>
-
-			<b-form-group id="input-group-4">
-				<b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-					<b-form-checkbox value="me">Check me out</b-form-checkbox>
-					<b-form-checkbox value="that">Check that out</b-form-checkbox>
-				</b-form-checkbox-group>
-			</b-form-group>
-
-			<b-button type="submit" variant="primary">Submit</b-button>
-			<b-button type="reset" variant="danger">Reset</b-button>
+			<b-button type="submit" class="btn-lg float-left m-2 p-3" variant="primary">Submit</b-button>
+			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
 		</b-form>
+
+
+
 
 		<table id="product-list" class="table thead-dark table-striped table-bordered table-hover">
 			<thead>
