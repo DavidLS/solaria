@@ -124,19 +124,18 @@
 				this.$nextTick(() => {
 				this.show = true
 				})
-			},
-			created: function() {
-				db.collection('products').get()
-				.then(snapshot => {
-					snapshot.forEach(doc => {
-						let item = doc.data()
-						item.id = doc.id
-						this.products.push(item)
-					})
-					this.products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
-					console.log(this.products)
+			}
+		},
+		created: function() {
+			db.collection('products').get()
+			.then(snapshot => {
+				snapshot.forEach(doc => {
+					let item = doc.data()
+					item.id = doc.id
+					this.products.push(item)
 				})
-			},
+				this.products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
+			})
 		}
 	}
 </script>
