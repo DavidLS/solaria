@@ -7,11 +7,11 @@
 
 		<b-form @submit="onSubmit" @reset="onReset" v-if="show">
 
-			<b-form-group 
-				id="input-group-1" 
-				label="Número de habitación" 
+			<b-form-group
+				id="input-group-1"
+				label="Número de habitación"
 				label-for="input-1"
-				description="Number of guests in the room"
+				description="Room number"
 				class="text-left p-4"
 			>
 				<b-form-input
@@ -23,19 +23,22 @@
 				></b-form-input>
 			</b-form-group>
 
-			<b-form-group 
-				id="input-group-2" 
-				label="Cantidad de huéspedes en la habitación" 
+			<b-form-group
+				id="input-group-2"
+				label="Cantidad de huéspedes en la habitación"
 				label-for="input-2"
-				description="Room number"
+				description="Number of guests in the room"
 				class="text-left p-4"
 			>
 				<b-form-input
 					id="input-2"
-					v-model="form.name"
+					v-model="form.guests"
 					required
 					placeholder="Introduzca la cantidad de huéspedes"
 					class="w-50"
+					type="number"
+					min="0"
+					max="4"
 				></b-form-input>
 			</b-form-group>
 
@@ -77,6 +80,7 @@
 				form: {
 					email: '',
 					name: '',
+					guests: null,
 					food: null,
 					checked: []
 				},
@@ -95,6 +99,7 @@
 				// Reset our form values
 				this.form.email = ''
 				this.form.name = ''
+				this.form.guests = null
 				this.form.food = null
 				this.form.checked = []
 				// Trick to reset/clear native browser form validation state
