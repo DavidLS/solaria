@@ -42,6 +42,23 @@
 				></b-form-input>
 			</b-form-group>
 
+			<b-form-group
+				id="input-group-3"
+				label="E-Mail"
+				label-for="input-3"
+				description="Guest e-mail"
+				class="text-left p-4"
+			>
+				<b-form-input
+					id="input-3"
+					v-model="form.email"
+					required
+					placeholder="Introduzca su e-mail"
+					class="w-50"
+					type="email"
+				></b-form-input>
+			</b-form-group>
+
 			<b-button type="submit" class="btn-lg float-left m-2 p-3" variant="primary">Submit</b-button>
 			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
 		</b-form>
