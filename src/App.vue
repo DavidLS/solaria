@@ -59,12 +59,22 @@
 				></b-form-input>
 			</b-form-group>
 
-			<b-button type="submit" class="btn-lg float-left m-2 p-3" variant="primary">Submit</b-button>
+			<b-form-group
+				id="input-group-4"
+				label="Menú"
+				label-for="input-4"
+				description="Seleccione menú"
+				class="text-left p-4"
+			>
+				<b-form-select class="w-50">
+					<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
+					<b-form-select-option v-for="type in menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
+				</b-form-select>
+			</b-form-group>
+
+			<b-button type="submit" class="btn-lg btn-success float-left m-2 p-3" variant="primary">Submit</b-button>
 			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
 		</b-form>
-
-
-
 
 		<table id="product-list" class="table thead-dark table-striped table-bordered table-hover">
 			<thead>
@@ -103,6 +113,7 @@
 				},
 				foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
 				products: [],
+				menuTypes: [],
 				show: true,
 			}
 		},
@@ -135,6 +146,18 @@
 					this.products.push(item)
 				})
 				this.products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
+			})
+
+			db.collectionGroup('types').get()
+			.then(snapshot => {
+				snapshot.forEach(doc => {
+					let item = doc.data()
+					item.id = doc.id
+					item.value = doc.id
+					item.text = item.name
+					this.menuTypes.push(item)
+				})
+				this.menuTypes.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
 			})
 		}
 	}
