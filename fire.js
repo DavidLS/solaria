@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const firebaseConfig = {
 	apiKey: process.env.VUE_APP_ENV_VARIABLE,
@@ -10,6 +11,6 @@ const firebaseConfig = {
 	appId: "1:800252403030:web:3ba62953ff730152350af7"
   };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-export const db = firebaseApp.firestore();
+export const db = firebase.firestore();
