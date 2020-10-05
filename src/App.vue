@@ -67,8 +67,9 @@
 				class="text-left p-4"
 			>
 				<b-form-select class="w-50">
+					{{store.state.menuTypes}}
 					<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
-					<b-form-select-option v-for="type in menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
+					<b-form-select-option v-for="type in store.state.menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
 				</b-form-select>
 			</b-form-group>
 
@@ -84,7 +85,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="product in products" :key="product.id">
+				<tr v-for="product in store.state.products" :key="product.id">
 					<th scope="row">{{ product.id }}</th>
 					<td>{{ product.name }}</td>
 				</tr>
@@ -95,7 +96,7 @@
 
 <script>
 	import Test from './components/Test.vue'
-	import { db } from '../fire';
+	import store from '../store';
 
 	export default {
 		name: 'app',
@@ -114,6 +115,7 @@
 				foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
 				products: [],
 				menuTypes: [],
+				store: store,
 				show: true,
 			}
 		},
@@ -133,32 +135,13 @@
 				// Trick to reset/clear native browser form validation state
 				this.show = false
 				this.$nextTick(() => {
-				this.show = true
+					this.show = true
 				})
 			}
 		},
-		created: function() {
-			db.collection('products').get()
-			.then(snapshot => {
-				snapshot.forEach(doc => {
-					let item = doc.data()
-					item.id = doc.id
-					this.products.push(item)
-				})
-				this.products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
-			})
-
-			db.collectionGroup('types').get()
-			.then(snapshot => {
-				snapshot.forEach(doc => {
-					let item = doc.data()
-					item.id = doc.id
-					item.value = doc.id
-					item.text = item.name
-					this.menuTypes.push(item)
-				})
-				this.menuTypes.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
-			})
+		mounted: function() {
+			this.store.getProducts();
+			this.store.getMenuTypes();
 		}
 	}
 </script>
