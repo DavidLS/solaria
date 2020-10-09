@@ -136,13 +136,6 @@
 				menuTypes: store.state.menuTypes,
 				show: true,
 
-				items: [
-				{ isActive: true, age: 40, first_name: 'Dickerson', name: 'Macdonald' },
-				{ isActive: false, age: 21, first_name: 'Larsen', name: 'Shaw' },
-				{ isActive: false, age: 89, first_name: 'Geneva', name: 'Wilson' },
-				{ isActive: true, age: 38, first_name: 'Jami', name: 'Carney' }
-				],
-
 				fields: ['name', 'selected'],
 				selected: [],
 
