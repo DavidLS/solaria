@@ -47,17 +47,6 @@
 				description="Number of guests in the room"
 				class="text-left p-4"
 			>
-				<!-- <b-form-input
-					id="input-2"
-					v-model="form.guests"
-					required
-					placeholder="Introduzca la cantidad de huéspedes"
-					class="w-50"
-					type="number"
-					min="1"
-					:max="'4'"
-				></b-form-input> -->
-
 				<b-form-select 
 					v-model="form.guests" 
 					:options="form.guestsOptions"
@@ -74,7 +63,7 @@
 						<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Guest '+n">
 							<b-card-text>
 								<b-form-group
-									:key="'product_'+n"
+									:key="'menu_'+n"
 									label="Menú"
 									label-for="input-4"
 									description="Seleccione menú"
@@ -86,6 +75,25 @@
 										<b-form-select-option v-for="type in store.state.menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
 									</b-form-select>
 								</b-form-group>
+
+								<table 
+									:key="'product_'+n"
+									class="table thead-dark table-striped table-bordered table-hover"
+								>
+									<thead>
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">Name</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr v-for="product in store.state.products" :key="'product_'+product.id">
+											<th scope="row">{{ product.id }}</th>
+											<td>{{ product.name }}</td>
+										</tr>
+									</tbody>
+								</table>
+
 							</b-card-text>
 						</b-tab>
 					</b-tabs>
@@ -94,21 +102,6 @@
 			<b-button type="submit" class="btn-lg btn-success float-left m-2 p-3" variant="primary">Submit</b-button>
 			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
 		</b-form>
-
-		<table id="product-list" class="table thead-dark table-striped table-bordered table-hover">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Name</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="product in store.state.products" :key="'product_'+product.id">
-					<th scope="row">{{ product.id }}</th>
-					<td>{{ product.name }}</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 </template>
 

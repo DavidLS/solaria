@@ -13,13 +13,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export const updateObject = (oldObject, updatedProperties) => {
-	return {
-		...oldObject,
-		...updatedProperties,
-	}
-};
-
 let store = {
 	debug: true,
 	state: {
@@ -35,7 +28,7 @@ let store = {
 	},
 	getProducts(){
 		var storeAux = this;
-		firebase.firestore().collection('products').get()
+		firebase.firestore().collection('products').orderBy("name").get()
 			.then(snapshot => {
 				let products = [];
 				snapshot.forEach(doc => {
@@ -44,6 +37,9 @@ let store = {
 					products.push(item)
 				});
 				products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
+
+				console.log("products");
+				console.log(products);
 				storeAux.setProductsAction(products);
 			})
 	},
