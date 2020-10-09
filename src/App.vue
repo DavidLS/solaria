@@ -49,7 +49,7 @@
 			>
 				<b-form-select 
 					v-model="form.guests" 
-					:options="form.guestsOptions"
+					:options="guestsOptions"
 					required
 					placeholder="Introduzca la cantidad de huéspedes"
 					class="w-50"
@@ -70,35 +70,39 @@
 									class="text-left p-4"
 								>
 									<b-form-select class="w-50">
-										{{store.state.menuTypes}}
 										<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
-										<b-form-select-option v-for="type in store.state.menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
+										<b-form-select-option v-for="type in menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
 									</b-form-select>
 								</b-form-group>
 
-								<table 
+								<b-table 
 									:key="'product_'+n"
 									class="table thead-dark table-striped table-bordered table-hover"
+									selectable
+									select-mode="multi"
+									:items="products"
+									:fields="fields"
+									@row-selected="onRowSelected"
 								>
-									<thead>
-										<tr>
-											<th scope="col">Name</th>
-											<th scope="col">Add</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr v-for="product in store.state.products" :key="'product_'+product.id">
-											<th scope="row">{{ product.id }}</th>
-											<td>{{ product.name }}</td>
-										</tr>
-									</tbody>
-								</table>
-
+								<template v-slot:cell(selected)="{ rowSelected }">
+									<template v-if="rowSelected">
+										<span aria-hidden="true">&check;</span>
+										<span class="sr-only">Selected</span>
+									</template>
+									<template v-else>
+										<span aria-hidden="true">&nbsp;</span>
+										<span class="sr-only">Not selected</span>
+									</template>
+								</template>
+								</b-table>
 							</b-card-text>
 						</b-tab>
 					</b-tabs>
 				</b-card>
 			</div>
+
+			<pre>{{ JSON.stringify(form, null, '\t') }}</pre>
+
 			<b-button type="submit" class="btn-lg btn-success float-left m-2 p-3" variant="primary">Submit</b-button>
 			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
 		</b-form>
@@ -118,20 +122,46 @@
 					email: '',
 					name: '',
 					guests: 1,
-					guestsOptions: [
-						{ value: 1, text: "1 Huésped" },
-						{ value: 2, text: "2 Huéspedes" },
-						{ value: 3, text: "3 Huéspedes" },
-						{ value: 4, text: "4 Huéspedes" },
-					],
+					selectedMenuType: [],
+					selectedProducts: [],
 				},
-				products: [],
-				menuTypes: [],
+				guestsOptions: [
+					{ value: 1, text: "1 Huésped" },
+					{ value: 2, text: "2 Huéspedes" },
+					{ value: 3, text: "3 Huéspedes" },
+					{ value: 4, text: "4 Huéspedes" },
+				],
 				store: store,
+				products: store.state.products,
+				menuTypes: store.state.menuTypes,
 				show: true,
+
+				items: [
+				{ isActive: true, age: 40, first_name: 'Dickerson', name: 'Macdonald' },
+				{ isActive: false, age: 21, first_name: 'Larsen', name: 'Shaw' },
+				{ isActive: false, age: 89, first_name: 'Geneva', name: 'Wilson' },
+				{ isActive: true, age: 38, first_name: 'Jami', name: 'Carney' }
+				],
+
+				fields: ['name', 'selected'],
+				selected: [],
+
 			}
 		},
 		methods: {
+
+			onRowSelected(items) {
+				this.selected = items
+			},
+			selectAllRows() {
+				this.$refs.selectableTable.selectAllRows()
+			},
+			clearSelected() {
+				this.$refs.selectableTable.clearSelected()
+			},
+
+
+
 			onSubmit(evt) {
 				evt.preventDefault();
 				alert(JSON.stringify(this.form));

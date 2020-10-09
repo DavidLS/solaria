@@ -37,9 +37,6 @@ let store = {
 					products.push(item)
 				});
 				products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
-
-				console.log("products");
-				console.log(products);
 				storeAux.setProductsAction(products);
 			})
 	},
