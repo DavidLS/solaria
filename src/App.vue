@@ -82,8 +82,8 @@
 								>
 									<thead>
 										<tr>
-											<th scope="col">#</th>
 											<th scope="col">Name</th>
+											<th scope="col">Add</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -118,8 +118,6 @@
 					email: '',
 					name: '',
 					guests: 1,
-					food: null,
-					checked: [],
 					guestsOptions: [
 						{ value: 1, text: "1 Huésped" },
 						{ value: 2, text: "2 Huéspedes" },
@@ -135,19 +133,17 @@
 		},
 		methods: {
 			onSubmit(evt) {
-				evt.preventDefault()
-				alert(JSON.stringify(this.form))
+				evt.preventDefault();
+				alert(JSON.stringify(this.form));
 			},
 			onReset(evt) {
-				evt.preventDefault()
-				this.form.email = ''
-				this.form.name = ''
-				this.form.guests = null
-				this.form.food = null
-				this.form.checked = []
-				this.show = false
+				evt.preventDefault();
+				this.form.email = '';
+				this.form.name = '';
+				this.form.guests = null;
+				this.show = false;
 				this.$nextTick(() => {
-					this.show = true
+					this.show = true;
 				})
 			}
 		},
