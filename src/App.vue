@@ -24,25 +24,6 @@
 			</b-form-group>
 
 			<b-form-group
-				id="input-group-2"
-				label="Cantidad de huéspedes en la habitación"
-				label-for="input-2"
-				description="Number of guests in the room"
-				class="text-left p-4"
-			>
-				<b-form-input
-					id="input-2"
-					v-model="form.guests"
-					required
-					placeholder="Introduzca la cantidad de huéspedes"
-					class="w-50"
-					type="number"
-					min="0"
-					max="4"
-				></b-form-input>
-			</b-form-group>
-
-			<b-form-group
 				id="input-group-3"
 				label="E-Mail"
 				label-for="input-3"
@@ -60,19 +41,56 @@
 			</b-form-group>
 
 			<b-form-group
-				id="input-group-4"
-				label="Menú"
-				label-for="input-4"
-				description="Seleccione menú"
+				id="input-group-2"
+				label="Cantidad de huéspedes en la habitación"
+				label-for="input-2"
+				description="Number of guests in the room"
 				class="text-left p-4"
 			>
-				<b-form-select class="w-50">
-					{{store.state.menuTypes}}
-					<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
-					<b-form-select-option v-for="type in store.state.menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
-				</b-form-select>
+				<!-- <b-form-input
+					id="input-2"
+					v-model="form.guests"
+					required
+					placeholder="Introduzca la cantidad de huéspedes"
+					class="w-50"
+					type="number"
+					min="1"
+					:max="'4'"
+				></b-form-input> -->
+
+				<b-form-select 
+					v-model="form.guests" 
+					:options="form.guestsOptions"
+					required
+					placeholder="Introduzca la cantidad de huéspedes"
+					class="w-50"
+				/>
+
 			</b-form-group>
 
+			<div v-if="form.guests > 0">
+				<b-card no-body>
+					<b-tabs card>
+						<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Guest '+n">
+							<b-card-text>
+								<b-form-group
+									:key="'product_'+n"
+									label="Menú"
+									label-for="input-4"
+									description="Seleccione menú"
+									class="text-left p-4"
+								>
+									<b-form-select class="w-50">
+										{{store.state.menuTypes}}
+										<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
+										<b-form-select-option v-for="type in store.state.menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
+									</b-form-select>
+								</b-form-group>
+							</b-card-text>
+						</b-tab>
+					</b-tabs>
+				</b-card>
+			</div>
 			<b-button type="submit" class="btn-lg btn-success float-left m-2 p-3" variant="primary">Submit</b-button>
 			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
 		</b-form>
@@ -85,7 +103,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="product in store.state.products" :key="product.id">
+				<tr v-for="product in store.state.products" :key="'product_'+product.id">
 					<th scope="row">{{ product.id }}</th>
 					<td>{{ product.name }}</td>
 				</tr>
@@ -95,24 +113,27 @@
 </template>
 
 <script>
-	import Test from './components/Test.vue'
 	import store from '../store';
 
 	export default {
 		name: 'app',
 		components: {
-			Test
 		},
 		data() {
 			return {
 				form: {
 					email: '',
 					name: '',
-					guests: null,
+					guests: 1,
 					food: null,
-					checked: []
+					checked: [],
+					guestsOptions: [
+						{ value: 1, text: "1 Huésped" },
+						{ value: 2, text: "2 Huéspedes" },
+						{ value: 3, text: "3 Huéspedes" },
+						{ value: 4, text: "4 Huéspedes" },
+					],
 				},
-				foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
 				products: [],
 				menuTypes: [],
 				store: store,
@@ -126,13 +147,11 @@
 			},
 			onReset(evt) {
 				evt.preventDefault()
-				// Reset our form values
 				this.form.email = ''
 				this.form.name = ''
 				this.form.guests = null
 				this.form.food = null
 				this.form.checked = []
-				// Trick to reset/clear native browser form validation state
 				this.show = false
 				this.$nextTick(() => {
 					this.show = true
