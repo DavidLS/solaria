@@ -142,9 +142,8 @@
 			}
 		},
 		methods: {
-
 			onRowSelected(items) {
-				this.selected = items
+				this.form.selectedProducts = items
 			},
 			selectAllRows() {
 				this.$refs.selectableTable.selectAllRows()
@@ -152,9 +151,6 @@
 			clearSelected() {
 				this.$refs.selectableTable.clearSelected()
 			},
-
-
-
 			onSubmit(evt) {
 				evt.preventDefault();
 				alert(JSON.stringify(this.form));
