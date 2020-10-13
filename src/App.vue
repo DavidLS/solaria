@@ -1,7 +1,7 @@
 
 <template>
 	<div id="app" class="container">
-		<img alt="Vue logo" src="./assets/logo.png">
+		<img alt="Casa Solaria" src="./assets/logoEmpresa.png">
 
 		<h1>Desayunos en Casa Solaria</h1>
 
@@ -81,7 +81,40 @@
 									</b-form-select>
 								</b-form-group>
 
+								<b-list-group
+									v-if="form.selectedMenuType[tabSelected] === '0'"
+								>
+									<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
+									<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
+									<b-list-group-item>Porción de pastelería hecha en casa.</b-list-group-item>
+									<b-list-group-item>Medialuna</b-list-group-item>
+									<b-list-group-item>Yogur de la casa</b-list-group-item>
+									<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
+									<b-list-group-item>Jugo de naranja.</b-list-group-item>
+									<b-list-group-item>Huevos revueltos.</b-list-group-item>
+									<b-list-group-item>Mantequilla.</b-list-group-item>
+									<b-list-group-item>Café.</b-list-group-item>
+									<b-list-group-item>Leche</b-list-group-item>
+									<b-list-group-item>Agua caliente</b-list-group-item>
+									<b-list-group-item>Te</b-list-group-item>
+								</b-list-group>
+
+								<b-list-group
+									v-if="form.selectedMenuType[tabSelected] == 1"
+								>
+									<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
+									<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
+									<b-list-group-item>Mermelada</b-list-group-item>
+									<b-list-group-item>Mantequilla</b-list-group-item>
+									<b-list-group-item>Jugo de naranja</b-list-group-item>
+									<b-list-group-item>Café</b-list-group-item>
+									<b-list-group-item>Leche</b-list-group-item>
+									<b-list-group-item>Jugo</b-list-group-item>
+									<b-list-group-item>Agua caliente</b-list-group-item>
+								</b-list-group>
+
 								<b-table 
+									v-show="form.selectedMenuType[tabSelected] == 2"
 									:key="'product_'+n"
 									class="table thead-dark table-striped table-bordered table-hover"
 									selectable
@@ -150,6 +183,14 @@
 		},
 		methods: {
 			onMenuChanged(value){
+
+				// const aux = {
+				// 	value: value,
+				// 	label: this.menuTypes.find(value => value === this.menuTypes.id),
+				// 	label2: "AAAA"
+				// };
+				// this.$set(this.form.selectedMenuType, this.tabSelected, aux);
+
 				this.$set(this.form.selectedMenuType, this.tabSelected, value);
 			},
 			onTabSelect(tabIndex){
@@ -182,7 +223,7 @@
 		mounted: function() {
 			this.store.getProducts();
 			this.store.getMenuTypes();
-		}
+		},
 	}
 </script>
 
