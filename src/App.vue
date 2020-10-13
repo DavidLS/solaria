@@ -41,6 +41,23 @@
 			</b-form-group>
 
 			<b-form-group
+				id="input-group-6"
+				label="Fecha"
+				label-for="date-1"
+				description="Date"
+				class="text-left p-4"
+			>
+				<b-form-datepicker 
+					id="date-1"
+					v-model="form.date" 
+					:min="min" 
+					:max="max" 
+					locale="en"
+					class="w-50"
+				/>
+			</b-form-group>
+
+			<b-form-group
 				id="input-group-2"
 				label="Cantidad de huéspedes en la habitación"
 				label-for="input-2"
@@ -156,6 +173,14 @@
 		components: {
 		},
 		data() {
+
+			const now = new Date();
+			const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+			const minDate = new Date(today);
+			minDate.setDate(minDate.getDate());
+			const maxDate = new Date(today);
+			maxDate.setDate(maxDate.getDate() + 4);
+
 			return {
 				form: {
 					email: '',
@@ -163,6 +188,7 @@
 					guests: 1,
 					selectedMenuType: [[]],
 					selectedProducts: [[]],
+					date: today,
 				},
 				guestsOptions: [
 					{ value: 1, text: "1 Huésped" },
@@ -178,7 +204,8 @@
 				fields: ['name', 'selected'],
 				tabSelected: 0,
 
-
+				min: minDate,
+				max: maxDate,
 			}
 		},
 		methods: {
