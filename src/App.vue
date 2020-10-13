@@ -59,7 +59,10 @@
 
 			<div v-if="form.guests > 0">
 				<b-card no-body>
-					<b-tabs card>
+					<b-tabs 
+						card
+						@input="onTabSelect"
+					>
 						<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Guest '+n">
 							<b-card-text>
 								<b-form-group
@@ -69,7 +72,10 @@
 									description="Seleccione menú"
 									class="text-left p-4"
 								>
-									<b-form-select class="w-50">
+									<b-form-select 
+										class="w-50"
+										@change="onMenuChanged"
+									>
 										<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
 										<b-form-select-option v-for="type in menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
 									</b-form-select>
@@ -122,8 +128,8 @@
 					email: '',
 					name: '',
 					guests: 1,
-					selectedMenuType: [],
-					selectedProducts: [],
+					selectedMenuType: [[]],
+					selectedProducts: [[]],
 				},
 				guestsOptions: [
 					{ value: 1, text: "1 Huésped" },
@@ -137,19 +143,26 @@
 				show: true,
 
 				fields: ['name', 'selected'],
-				selected: [],
+				tabSelected: 0,
+
 
 			}
 		},
 		methods: {
+			onMenuChanged(value){
+				this.$set(this.form.selectedMenuType, this.tabSelected, value);
+			},
+			onTabSelect(tabIndex){
+				this.tabSelected = tabIndex;
+			},
 			onRowSelected(items) {
-				this.form.selectedProducts = items
+				this.$set(this.form.selectedProducts, this.tabSelected, items);
 			},
 			selectAllRows() {
-				this.$refs.selectableTable.selectAllRows()
+				this.$refs.selectableTable.selectAllRows();
 			},
 			clearSelected() {
-				this.$refs.selectableTable.clearSelected()
+				this.$refs.selectableTable.clearSelected();
 			},
 			onSubmit(evt) {
 				evt.preventDefault();
