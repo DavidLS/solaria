@@ -1,7 +1,11 @@
 
 <template>
 	<div id="app" class="container">
-		<img alt="Casa Solaria" src="./assets/logoEmpresa.png">
+		<img 
+			alt="Casa Solaria" 
+			src="./assets/casa_solaria.jpg"
+			style="width:15%;"
+		>
 
 		<h1>Desayunos en Casa Solaria</h1>
 
