@@ -239,7 +239,16 @@
 			},
 			onSubmit(event) {
 				event.preventDefault();
-				this.store.setOrder(this.form);
+
+				const order = {
+					email: this.form.email,
+					name: this.form.name,
+					guests: this.form.guests,
+					selectedMenuType: JSON.stringify(this.form.selectedMenuType),
+					date: this.form.date,
+				}
+
+				this.store.setOrder(order);
 			},
 			onReset(event) {
 				event.preventDefault();

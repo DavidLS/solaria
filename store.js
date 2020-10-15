@@ -67,15 +67,12 @@ let store = {
 			})
 	},
 
-	setOrder(form){
+	setOrder(order){
 		const storeAux = this;
 		storeAux.state.loading = true;
-		firebase.firestore().collection('orders').add({
-			order: JSON.stringify({
-				date: form.date,
-				form: form,
-			})
-		})
+		firebase.firestore().collection('orders').add(
+			order
+		)
 			.then(function() {
 				console.log("Document successfully written!");
 				storeAux.state.success = true;
