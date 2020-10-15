@@ -18,6 +18,9 @@ let store = {
 	state: {
 		products: [],
 		menuTypes: [],
+		success: false,
+		error: false,
+		loading: true,
 	},
 
 	setProductsAction(products){
@@ -66,8 +69,23 @@ let store = {
 
 	setOrder(form){
 		const storeAux = this;
-		console.log("form");
-		console.log(form);
+		storeAux.state.loading = true;
+		firebase.firestore().collection('orders').add({
+			order: JSON.stringify({
+				date: form.date,
+				form: form,
+			})
+		})
+			.then(function() {
+				console.log("Document successfully written!");
+				storeAux.state.success = true;
+				storeAux.state.loading = false;
+			})
+			.catch(function(error) {
+				console.error("Error writing document: ", error);
+				storeAux.state.error = true;
+				storeAux.state.loading = false;
+			});
 	}
 
 
