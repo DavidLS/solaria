@@ -190,7 +190,7 @@
 					guests: 1,
 					selectedMenuType: [[]],
 					selectedProducts: [[]],
-					date: today,
+					date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
 				},
 				guestsOptions: [
 					{ value: 1, text: "1 Huésped" },
