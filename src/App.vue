@@ -162,7 +162,7 @@
 			</div>
 
 			<b-button type="submit" class="btn-lg btn-success float-left m-2 p-3" variant="primary">Submit</b-button>
-			<b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button>
+			<!-- <b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button> -->
 		</b-form>
 	</div>
 </template>
