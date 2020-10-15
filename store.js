@@ -57,7 +57,9 @@ let store = {
 					item.id = doc.id
 					types.push(item)
 				});
-				types.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
+				types.sort( (a, b) => parseInt(a.id) > parseInt(b.id) );
+
+				types.unshift({disabled: true, value: null, text:"-- Por favor seleccione una opción --"});
 				storeAux.setMenuTypesAction(types);
 			})
 	},

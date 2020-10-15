@@ -96,9 +96,8 @@
 									<b-form-select 
 										class="w-50"
 										@change="onMenuChanged"
+										:options="menuTypes"
 									>
-										<b-form-select-option :value="null" disabled>-- Por favor seleccione una opción --</b-form-select-option>
-										<b-form-select-option v-for="type in menuTypes" :key="type.id" :value=type.id>{{ type.name }}</b-form-select-option>
 									</b-form-select>
 								</b-form-group>
 
@@ -204,7 +203,6 @@
 				products: store.state.products,
 				menuTypes: store.state.menuTypes,
 				show: true,
-
 				fields: ['name', 'selected'],
 				tabSelected: 0,
 
@@ -215,14 +213,18 @@
 		methods: {
 			onMenuChanged(value){
 
-				// const aux = {
-				// 	value: value,
-				// 	label: this.menuTypes.find(value => value === this.menuTypes.id),
-				// 	label2: "AAAA"
-				// };
-				// this.$set(this.form.selectedMenuType, this.tabSelected, aux);
+				const values = this.menuTypes.map(function(o) { return o.value });
+				const index = values.indexOf(value);
+				let text = "";
+				if(index != -1){
+					text = this.menuTypes[index].text;
+				}
 
-				this.$set(this.form.selectedMenuType, this.tabSelected, value);
+				const aux = {
+					value: value,
+					text: text,
+				};
+				this.$set(this.form.selectedMenuType, this.tabSelected, aux);
 			},
 			onTabSelect(tabIndex){
 				this.tabSelected = tabIndex;
@@ -251,6 +253,7 @@
 				})
 			}
 		},
+		
 		mounted: function() {
 			this.store.getProducts();
 			this.store.getMenuTypes();
