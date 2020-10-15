@@ -64,6 +64,12 @@ let store = {
 			})
 	},
 
+	setOrder(form){
+		const storeAux = this;
+		console.log("form");
+		console.log(form);
+	}
+
 
 }
 
