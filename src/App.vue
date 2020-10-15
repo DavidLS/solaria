@@ -58,6 +58,7 @@
 					:max="max" 
 					locale="en"
 					class="w-50"
+					required
 				/>
 			</b-form-group>
 
@@ -71,7 +72,6 @@
 				<b-form-select 
 					v-model="form.guests" 
 					:options="guestsOptions"
-					required
 					placeholder="Introduzca la cantidad de huéspedes"
 					class="w-50"
 				/>
@@ -97,6 +97,7 @@
 										class="w-50"
 										@change="onMenuChanged"
 										:options="menuTypes"
+										required
 									>
 									</b-form-select>
 								</b-form-group>
