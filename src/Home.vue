@@ -103,7 +103,7 @@
 								</b-form-group>
 
 								<b-list-group
-									v-if="form.selectedMenuType[tabSelected] === '0'"
+									v-if="form.selectedMenuType[tabSelected].value === '0'"
 								>
 									<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
 									<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
@@ -121,7 +121,7 @@
 								</b-list-group>
 
 								<b-list-group
-									v-if="form.selectedMenuType[tabSelected] == 1"
+									v-if="form.selectedMenuType[tabSelected].value == 1"
 								>
 									<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
 									<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
@@ -135,7 +135,7 @@
 								</b-list-group>
 
 								<b-table 
-									v-show="form.selectedMenuType[tabSelected] == 2"
+									v-show="form.selectedMenuType[tabSelected].value == 2"
 									:key="'product_'+n"
 									class="table thead-dark table-striped table-bordered table-hover"
 									selectable
