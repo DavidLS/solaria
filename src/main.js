@@ -24,18 +24,6 @@ const router = new VueRouter({
 	routes
 });
 
-//not working from vue-router docs
 new Vue({
 	router
 }).$mount('#app');
-
-//not working "solution"
-// new Vue({
-// 	router,
-// 	render: h => h(Home)
-// }).$mount('#app');
-
-//original
-// new Vue({
-// 	render: h => h(Home),
-// }).$mount('#app')
