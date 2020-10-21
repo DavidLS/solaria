@@ -1,6 +1,6 @@
 
 <template>
-	<div id="app" class="container">
+	<div class="container">
 		<img 
 			alt="Casa Solaria" 
 			src="./assets/casa_solaria.jpg"
@@ -171,7 +171,7 @@
 	import store from '../store';
 
 	export default {
-		name: 'app',
+		name: 'home',
 		components: {
 		},
 		data() {

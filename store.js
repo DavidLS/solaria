@@ -74,12 +74,12 @@ let store = {
 			order
 		)
 			.then(function() {
-				console.log("Document successfully written!");
+				//console.log("Document successfully written!");
 				storeAux.state.success = true;
 				storeAux.state.loading = false;
 			})
 			.catch(function(error) {
-				console.error("Error writing document: ", error);
+				//console.error("Error writing document: ", error);
 				storeAux.state.error = true;
 				storeAux.state.loading = false;
 			});
