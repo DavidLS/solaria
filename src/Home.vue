@@ -240,12 +240,54 @@
 			onSubmit(event) {
 				event.preventDefault();
 
+				const rawSelectedMenuType = this.form.selectedMenuType;
+				let selectedMenuType = [];
+				rawSelectedMenuType.forEach(menuTypeRaw => {
+					const index = selectedMenuType.findIndex(function(item) {
+						return item.id === menuTypeRaw.value;
+					});
+
+					if(index !== -1){
+						selectedMenuType[index].qty++;
+					}else{
+						const menuType = {
+							id: menuTypeRaw.value,
+							name: menuTypeRaw.text,
+							qty: 1,
+						};
+						selectedMenuType.push(menuType);
+					}
+				});
+
+				const rawSelectedProducts = this.form.selectedProducts;
+				let selectedProducts = [];
+				rawSelectedProducts.forEach(productsRaw => {
+					
+					productsRaw.forEach(guest => {
+						const index = selectedProducts.findIndex(function(item) {
+							return item.id === guest.id;
+						});
+	
+						if(index !== -1){
+							selectedProducts[index].qty++;
+						}else{
+							const product = {
+								id: guest.id,
+								name: guest.name,
+								qty: 1,
+							};
+							selectedProducts.push(product);
+						}
+					});
+				});
+
 				const order = {
 					email: this.form.email,
 					name: this.form.name,
 					guests: this.form.guests,
-					selectedMenuType: JSON.stringify(this.form.selectedMenuType),
-					selectedProducts: JSON.stringify(this.form.selectedProducts),
+					//selectedMenuType: JSON.stringify(),
+					selectedMenuType: selectedMenuType,
+					selectedProducts: selectedProducts,
 					date: this.form.date,
 				}
 
