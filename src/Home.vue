@@ -285,7 +285,6 @@
 					email: this.form.email,
 					name: this.form.name,
 					guests: this.form.guests,
-					//selectedMenuType: JSON.stringify(),
 					selectedMenuType: selectedMenuType,
 					selectedProducts: selectedProducts,
 					date: this.form.date,

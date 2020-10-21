@@ -22,6 +22,7 @@ let store = {
 		success: false,
 		error: false,
 		loading: true,
+		table: {columns: [], rows: []},
 	},
 
 	setProductsAction(products){
@@ -82,7 +83,7 @@ let store = {
 				storeAux.state.errorObj = error;
 			});
 	},
-	getOrders(date="2020-10-15"){
+	getOrders(date="2020-10-21"){
 		var storeAux = this;
 		firebase.firestore().collection('orders').where("date", "==", date)
 		.get()
@@ -94,7 +95,6 @@ let store = {
 				item.id = doc.id
 				orders.push(item)
 			});
-
 			storeAux.setOrdersAction(orders);
 		})
 		.catch(function(error) {
@@ -106,7 +106,83 @@ let store = {
 		orders.forEach(element => {
 			this.state.orders.push(element);
 		});
+		this.processOrdersAction();
 	},
+	processOrdersAction(){
+		var storeAux = this;
+		let columns=[
+			{
+				label: 'Habitación',
+				field: 'room',
+				id: -1,
+			},
+			{
+				label: 'Huespedes',
+				field: 'guests',
+				id: -1,
+			},
+			{
+				label: 'Continental',
+				field: 'continental',
+				id: 0,
+			},
+			{
+				label: 'Americano',
+				field: 'americano',
+				id: 1,
+			},
+			{
+				label: 'Solaria',
+				field: 'solaria',
+				id: 3,
+			},
+		]
+
+		const products = [];
+		const rawOrders = this.state.orders;
+		rawOrders.forEach(order => {
+
+			order.selectedProducts.forEach(productRaw => {
+				const productInColumn = products.findIndex(function(item) {
+					return item.id === productRaw.id;
+				});
+	
+				if(productInColumn === -1){
+					const product = {
+						id: productRaw.id,
+						label: productRaw.name,
+						field: slugify(productRaw.name),
+					};
+					products.push(product);
+				}
+			});
+		});
+
+		columns.forEach(element => {
+			storeAux.state.table.columns.push(element);
+		});
+		products.forEach(element => {
+			storeAux.state.table.columns.push(element);
+		});
+
+	},
+}
+
+function slugify(text) {
+	const from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;"
+	const to = "aaaaaeeeeeiiiiooooouuuunc------"
+
+	const newText = text.split('').map(
+		(letter, i) => letter.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i)))
+
+	return newText
+		.toString()                     // Cast to string
+		.toLowerCase()                  // Convert the string to lowercase letters
+		.trim()                         // Remove whitespace from both sides of a string
+		.replace(/\s+/g, '-')           // Replace spaces with -
+		.replace(/&/g, '-y-')           // Replace & with 'and'
+		.replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+		.replace(/\-\-+/g, '-');        // Replace multiple - with single -
 }
 
 export default store;

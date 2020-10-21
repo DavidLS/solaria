@@ -8,8 +8,7 @@
 		>
 
 		<h1>Desayunos en Casa Solaria</h1>
-		
-
+		{{table}}
 	</div>
 </template>
 
@@ -21,12 +20,14 @@
 		data() {
 			return {
 				orders: store.state.orders,
+				table: store.state.table,
 				store:store,
 			}
 		},
-		// mounted: function() {
-		// 	this.store.getOrders();
-		// },
+		mounted: function() {
+			this.store.getOrders();
+		},
+
 	}
 </script>
 
