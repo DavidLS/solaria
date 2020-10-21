@@ -18,6 +18,7 @@ let store = {
 	state: {
 		products: [],
 		menuTypes: [],
+		orders: [],
 		success: false,
 		error: false,
 		loading: true,
@@ -43,7 +44,6 @@ let store = {
 				storeAux.setProductsAction(products);
 			})
 	},
-
 	setMenuTypesAction(types){
 		this.state.menuTypes.splice(0,this.state.menuTypes.length);
 		types.forEach(element => {
@@ -66,7 +66,6 @@ let store = {
 				storeAux.setMenuTypesAction(types);
 			})
 	},
-
 	setOrder(order){
 		const storeAux = this;
 		storeAux.state.loading = true;
@@ -74,18 +73,40 @@ let store = {
 			order
 		)
 			.then(function() {
-				//console.log("Document successfully written!");
 				storeAux.state.success = true;
 				storeAux.state.loading = false;
 			})
 			.catch(function(error) {
-				//console.error("Error writing document: ", error);
 				storeAux.state.error = true;
 				storeAux.state.loading = false;
+				storeAux.state.errorObj = error;
 			});
-	}
+	},
+	getOrders(date="2020-10-15"){
+		var storeAux = this;
+		firebase.firestore().collection('orders').where("date", "==", date)
+		.get()
+		.then(function(snapshot) {
 
+			let orders = [];
+			snapshot.forEach(doc => {
+				let item = doc.data()
+				item.id = doc.id
+				orders.push(item)
+			});
 
+			storeAux.setOrdersAction(orders);
+		})
+		.catch(function(error) {
+			// eslint-disable-next-line
+			console.log("Error getting documents: ", error);
+		});
+	},
+	setOrdersAction(orders){
+		orders.forEach(element => {
+			this.state.orders.push(element);
+		});
+	},
 }
 
 export default store;

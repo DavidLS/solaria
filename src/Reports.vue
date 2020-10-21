@@ -8,14 +8,25 @@
 		>
 
 		<h1>Desayunos en Casa Solaria</h1>
-		<h1>AAAAAAAAAAAAAAAAAAAA</h1>
+		
 
 	</div>
 </template>
 
 <script>
+	import store from '../store';
+
 	export default {
 		name: 'reports',
+		data() {
+			return {
+				orders: store.state.orders,
+				store:store,
+			}
+		},
+		// mounted: function() {
+		// 	this.store.getOrders();
+		// },
 	}
 </script>
 
