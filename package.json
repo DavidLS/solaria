@@ -15,6 +15,7 @@
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "vue": "^2.6.12",
+    "vue-good-table": "^2.21.1",
     "vue-router": "^3.4.7",
     "vuefire": "^2.2.4"
   },

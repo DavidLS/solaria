@@ -114,33 +114,55 @@ let store = {
 			{
 				label: 'Habitación',
 				field: 'room',
-				id: -1,
+				id: null,
 			},
 			{
 				label: 'Huespedes',
 				field: 'guests',
-				id: -1,
+				id: null,
 			},
 			{
 				label: 'Continental',
 				field: 'continental',
-				id: 0,
+				id: {
+					id: 0,
+					type: "menuType"
+				},
 			},
 			{
 				label: 'Americano',
 				field: 'americano',
-				id: 1,
+				id: {
+					id: 1,
+					type: "menuType"
+				},
 			},
 			{
 				label: 'Solaria',
 				field: 'solaria',
-				id: 3,
+				id: {
+					id: 2,
+					type: "menuType"
+				},
 			},
-		]
-
-		const products = [];
+		];
+		let rows = [];
+		
+		
 		const rawOrders = this.state.orders;
+		const products = [];
+		
+		let counter = 1;
 		rawOrders.forEach(order => {
+
+			
+			let row = {
+				id: counter,
+				email: order.email,
+				room: order.name,
+				guests: order.guests,
+			}
+			counter++;
 
 			order.selectedProducts.forEach(productRaw => {
 				const productInColumn = products.findIndex(function(item) {
@@ -149,20 +171,38 @@ let store = {
 	
 				if(productInColumn === -1){
 					const product = {
-						id: productRaw.id,
+						id: {
+							id: productRaw.id,
+							type: "product",
+						},
 						label: productRaw.name,
 						field: slugify(productRaw.name),
 					};
 					products.push(product);
 				}
+
+				const slug = slugify(productRaw.name);
+				row[slug]= productRaw.qty;
 			});
+
+			order.selectedMenuType.forEach(menuType => {
+				const slug = slugify(menuType.name);
+				row[slug]= menuType.qty;
+			})
+
+			rows.push(row);
 		});
 
+		//columns
 		columns.forEach(element => {
 			storeAux.state.table.columns.push(element);
 		});
 		products.forEach(element => {
 			storeAux.state.table.columns.push(element);
+		});
+
+		rows.forEach(element => {
+			storeAux.state.table.rows.push(element);
 		});
 
 	},
@@ -179,9 +219,13 @@ function slugify(text) {
 		.toString()                     // Cast to string
 		.toLowerCase()                  // Convert the string to lowercase letters
 		.trim()                         // Remove whitespace from both sides of a string
+		// eslint-disable-next-line
 		.replace(/\s+/g, '-')           // Replace spaces with -
+		// eslint-disable-next-line
 		.replace(/&/g, '-y-')           // Replace & with 'and'
+		// eslint-disable-next-line
 		.replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+		// eslint-disable-next-line
 		.replace(/\-\-+/g, '-');        // Replace multiple - with single -
 }
 

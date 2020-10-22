@@ -8,7 +8,12 @@
 		>
 
 		<h1>Desayunos en Casa Solaria</h1>
-		{{table}}
+		
+		<vue-good-table
+			:columns="table.columns"
+			:rows="table.rows"
+			styleClass="vgt-table striped condensed"
+		/>
 	</div>
 </template>
 
