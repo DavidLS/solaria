@@ -8,12 +8,23 @@
 		>
 
 		<h1>Desayunos en Casa Solaria</h1>
-		
+
 		<vue-good-table
 			:columns="table.columns"
 			:rows="table.rows"
 			styleClass="vgt-table striped condensed"
-		/>
+			compactMode
+		>
+		<div slot="table-actions">
+			<b-button variant="outline-primary">
+				Print
+			</b-button>
+		</div>
+		<div slot="emptystate">
+			Loading reports
+		</div>
+		</vue-good-table>
+			
 	</div>
 </template>
 

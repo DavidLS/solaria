@@ -115,11 +115,13 @@ let store = {
 				label: 'Habitación',
 				field: 'room',
 				id: null,
+				sortable: true,
 			},
 			{
 				label: 'Huespedes',
 				field: 'guests',
 				id: null,
+				sortable: true,
 			},
 			{
 				label: 'Continental',
