@@ -21,7 +21,7 @@ let store = {
 		orders: [],
 		success: false,
 		error: false,
-		loading: true,
+		loading: false,
 		table: {columns: [], rows: []},
 	},
 
