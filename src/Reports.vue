@@ -9,6 +9,26 @@
 
 		<h1>Desayunos en Casa Solaria</h1>
 
+
+		<b-form>
+			<b-form-group
+				id="input-group-6"
+				label="Fecha"
+				label-for="date-1"
+				description="Date"
+				class="text-left p-4"
+			>
+				<b-form-datepicker 
+					@input="dateSelected"
+					id="date-1"
+					v-model="date" 
+					locale="en"
+					class="w-50"
+					required
+				/>
+			</b-form-group>
+		</b-form>
+
 		<vue-good-table
 			:columns="table.columns"
 			:rows="table.rows"
@@ -20,16 +40,15 @@
 				Print
 			</b-button>
 		</div>
-		<div slot="emptystate">
-			Loading reports
-		</div>
 		</vue-good-table>
-			
 	</div>
 </template>
 
 <script>
 	import store from '../store';
+
+	const now = new Date();
+	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
 	export default {
 		name: 'reports',
@@ -38,12 +57,14 @@
 				orders: store.state.orders,
 				table: store.state.table,
 				store:store,
+				date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
 			}
 		},
-		mounted: function() {
-			this.store.getOrders();
+		methods:{
+			dateSelected: function (date) {
+				this.store.getOrders(date);
+			},
 		},
-
 	}
 </script>
 

@@ -103,6 +103,7 @@ let store = {
 		});
 	},
 	setOrdersAction(orders){
+		this.state.orders.splice(0, this.state.orders.length);
 		orders.forEach(element => {
 			this.state.orders.push(element);
 		});
@@ -150,14 +151,12 @@ let store = {
 		];
 		let rows = [];
 		
-		
 		const rawOrders = this.state.orders;
 		const products = [];
 		
 		let counter = 1;
 		rawOrders.forEach(order => {
-
-			
+	
 			let row = {
 				id: counter,
 				email: order.email,
@@ -196,6 +195,7 @@ let store = {
 		});
 
 		//columns
+		storeAux.state.table.columns.splice(0, storeAux.state.table.columns);
 		columns.forEach(element => {
 			storeAux.state.table.columns.push(element);
 		});
@@ -203,6 +203,8 @@ let store = {
 			storeAux.state.table.columns.push(element);
 		});
 
+		//rows
+		storeAux.state.table.rows.splice(0, storeAux.state.table.rows);
 		rows.forEach(element => {
 			storeAux.state.table.rows.push(element);
 		});
