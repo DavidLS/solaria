@@ -87,7 +87,6 @@
 						sortable: false,
 						searchable: false,
 					});
-					//newColumns.push(element.field);
 				});
 				console.log(newColumns);
 
