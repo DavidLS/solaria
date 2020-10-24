@@ -100,7 +100,7 @@
 					perPageSizes: [1000],
 					showPerPage: false,
 					showEntriesInfo: true,
-					columnKeys: newColumns,
+					columns: newColumns,
 				};
 			},
 		}
