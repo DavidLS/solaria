@@ -29,25 +29,7 @@
 			</b-form-group>
 		</b-form>
 
-		{{this.store.state.orders.length}}
-		{{this.store.state.table.rows.length}}
-
 		<data-table v-bind="bindings"/>
-
-
-		<vue-good-table
-			:columns="table.columns"
-			:rows="table.rows"
-			styleClass="vgt-table striped condensed"
-			compactMode
-		>
-
-		<div slot="table-actions">
-			<b-button variant="outline-primary">
-				Print
-			</b-button>
-		</div>
-		</vue-good-table>
 	</div>
 </template>
 
@@ -88,7 +70,6 @@
 						searchable: false,
 					});
 				});
-				console.log(newColumns);
 
 				return {
 					data: this.store.state.table.rows,
