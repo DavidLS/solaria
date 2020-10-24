@@ -14,6 +14,12 @@ import VueGoodTablePlugin from 'vue-good-table';
 import 'vue-good-table/dist/vue-good-table.css'
 Vue.use(VueGoodTablePlugin);
 
+import DataTable from '@andresouzaabreu/vue-data-table'
+Vue.component("data-table", DataTable)
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '@andresouzaabreu/vue-data-table/dist/DataTable.css'
+
+
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 import Home from './Home.vue';

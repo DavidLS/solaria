@@ -29,12 +29,19 @@
 			</b-form-group>
 		</b-form>
 
+		{{this.store.state.orders.length}}
+		{{this.store.state.table.rows.length}}
+
+		<data-table v-bind="bindings"/>
+
+
 		<vue-good-table
 			:columns="table.columns"
 			:rows="table.rows"
 			styleClass="vgt-table striped condensed"
 			compactMode
 		>
+
 		<div slot="table-actions">
 			<b-button variant="outline-primary">
 				Print
@@ -49,6 +56,7 @@
 
 	const now = new Date();
 	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+	const todayString = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 
 	export default {
 		name: 'reports',
@@ -57,7 +65,7 @@
 				orders: store.state.orders,
 				table: store.state.table,
 				store:store,
-				date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
+				date: todayString,
 			}
 		},
 		methods:{
@@ -65,6 +73,37 @@
 				this.store.getOrders(date);
 			},
 		},
+		mounted: function() {
+			this.store.getOrders(todayString);
+		},
+		computed: {
+			bindings() {
+				const newColumns = [];
+
+				this.store.state.table.columns.forEach(element => {
+					newColumns.push({
+						key: element.field,
+						title: element.label,
+						sortable: false,
+						searchable: false,
+					});
+					//newColumns.push(element.field);
+				});
+				console.log(newColumns);
+
+				return {
+					data: this.store.state.table.rows,
+					sortingMode: "single",
+					actionMode: "disabled",
+					showSearchFilter: false,
+					showPagination: false,
+					perPageSizes: [1000],
+					showPerPage: false,
+					showEntriesInfo: true,
+					columnKeys: newColumns,
+				};
+			},
+		}
 	}
 </script>
 

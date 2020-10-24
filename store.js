@@ -83,7 +83,7 @@ let store = {
 				storeAux.state.errorObj = error;
 			});
 	},
-	getOrders(date="2020-10-21"){
+	getOrders(date){
 		var storeAux = this;
 		firebase.firestore().collection('orders').where("date", "==", date)
 		.get()
@@ -95,6 +95,7 @@ let store = {
 				item.id = doc.id
 				orders.push(item)
 			});
+
 			storeAux.setOrdersAction(orders);
 		})
 		.catch(function(error) {
@@ -104,6 +105,9 @@ let store = {
 	},
 	setOrdersAction(orders){
 		this.state.orders.splice(0, this.state.orders.length);
+		this.state.table.rows.splice(0, this.state.table.rows.length);
+		this.state.table.columns.splice(0, this.state.table.columns.length);
+
 		orders.forEach(element => {
 			this.state.orders.push(element);
 		});
@@ -111,6 +115,7 @@ let store = {
 	},
 	processOrdersAction(){
 		var storeAux = this;
+
 		let columns=[
 			{
 				label: 'Habitación',
@@ -151,7 +156,7 @@ let store = {
 		];
 		let rows = [];
 		
-		const rawOrders = this.state.orders;
+		const rawOrders = storeAux.state.orders;
 		const products = [];
 		
 		let counter = 1;
@@ -204,6 +209,15 @@ let store = {
 		});
 
 		//rows
+		function compareRows(a, b) {
+			if (parseInt(a.room) < parseInt(b.room))
+				return -1;
+			if (parseInt(a.room) > parseInt(b.room))
+				return 1;
+			return 0;
+		}
+		rows.sort(compareRows);
+
 		storeAux.state.table.rows.splice(0, storeAux.state.table.rows);
 		rows.forEach(element => {
 			storeAux.state.table.rows.push(element);

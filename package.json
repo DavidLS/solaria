@@ -9,6 +9,7 @@
     "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "@andresouzaabreu/vue-data-table": "^2.2.3",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
     "firebase": "^7.19.1",
