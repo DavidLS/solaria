@@ -64,6 +64,25 @@
 				</b-form-group>
 
 				<b-form-group
+					id="input-group-6"
+					label="Hora para desayunar"
+					label-for="time-1"
+					description="Breakfast time"
+					class="text-left p-4"
+				>
+					<b-form-timepicker
+						id="time-1" 
+						v-model="form.time"
+						@input="onTimeChanged"
+						locale="en"
+						hide-header
+						:hour12="false"
+						minutes-step="15"
+						required
+					/>
+				</b-form-group>
+
+				<b-form-group
 					id="input-group-2"
 					label="Cantidad de huéspedes en la habitación"
 					label-for="input-2"
@@ -210,6 +229,7 @@
 					selectedMenuType: [[]],
 					selectedProducts: [[]],
 					date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
+					time: "08:00:00",
 				},
 				guestsOptions: [
 					{ value: 1, text: "1 Huésped" },
@@ -233,6 +253,20 @@
 			}
 		},
 		methods: {
+			onTimeChanged(value){
+				console.log("value");
+				console.log(value);
+				if(value < "08:00:00"){
+					this.form.time = "08:00:00";
+					console.log("muy temprano");
+				}else if(value > "11:00:00"){
+					this.form.time = "11:00:00";
+					console.log("muy tarde");
+				}else{
+					this.form.time = value;
+					console.log("lito");
+				}
+			},
 			onMenuChanged(value){
 
 				const values = this.menuTypes.map(function(o) { return o.value });
@@ -310,6 +344,7 @@
 					guests: this.form.guests,
 					selectedMenuType: selectedMenuType,
 					selectedProducts: selectedProducts,
+					time: this.form.time,
 					date: this.form.date,
 				}
 

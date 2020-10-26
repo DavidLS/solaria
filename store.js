@@ -118,18 +118,24 @@ let store = {
 
 		let columns=[
 			{
+				label: 'Horario',
+				field: 'time',
+				id: "horario",
+				sortable: true,
+			},
+			{
 				label: 'Habitación',
 				field: 'room',
-				id: null,
+				id: "habitacion",
 				sortable: true,
 			},
 			{
 				label: 'Huespedes',
 				field: 'guests',
-				id: null,
-				sortable: true,
-			}]
-		;
+				id: "huespedes",
+				sortable: false,
+			},
+		];
 
 		storeAux.state.menuTypes.forEach(element => {
 			if(element.value){
@@ -153,6 +159,7 @@ let store = {
 		rawOrders.forEach(order => {
 	
 			let row = {
+				time: order.time,
 				id: counter,
 				email: order.email,
 				room: order.name,
@@ -200,9 +207,9 @@ let store = {
 
 		//rows
 		function compareRows(a, b) {
-			if (parseInt(a.room) < parseInt(b.room))
+			if (parseInt(a.time) < parseInt(b.time) || !b.time)
 				return -1;
-			if (parseInt(a.room) > parseInt(b.room))
+			if (parseInt(a.time) > parseInt(b.time))
 				return 1;
 			return 0;
 		}

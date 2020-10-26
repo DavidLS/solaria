@@ -74,7 +74,7 @@
 
 				return {
 					data: this.store.state.table.rows,
-					sortingMode: "single",
+					sortingMode: "multiple",
 					actionMode: "disabled",
 					showSearchFilter: false,
 					showPagination: false,
