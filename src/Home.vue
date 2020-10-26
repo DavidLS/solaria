@@ -135,6 +135,16 @@
 										<b-list-group-item>Agua caliente</b-list-group-item>
 									</b-list-group>
 
+									<b-list-group
+										v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 4"
+									>
+										<b-list-group-item>3 Galletas Artesanales</b-list-group-item>
+										<b-list-group-item>1 Fruta</b-list-group-item>
+										<b-list-group-item>1 Leche Saborizada</b-list-group-item>
+										<b-list-group-item>1 Sandwich de Jamón queso</b-list-group-item>
+										<b-list-group-item>1 Muffin</b-list-group-item>
+									</b-list-group>
+
 									<b-table 
 										v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
 										:key="'product_'+n"

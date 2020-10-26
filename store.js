@@ -128,32 +128,22 @@ let store = {
 				field: 'guests',
 				id: null,
 				sortable: true,
-			},
-			{
-				label: 'Continental',
-				field: 'continental',
-				id: {
-					id: 0,
-					type: "menuType"
-				},
-			},
-			{
-				label: 'Americano',
-				field: 'americano',
-				id: {
-					id: 1,
-					type: "menuType"
-				},
-			},
-			{
-				label: 'Solaria',
-				field: 'solaria',
-				id: {
-					id: 2,
-					type: "menuType"
-				},
-			},
-		];
+			}]
+		;
+
+		storeAux.state.menuTypes.forEach(element => {
+			if(element.value){
+				columns.push({
+					label: element.text,
+					field: slugify(element.text),
+					id: {
+						id: element.value,
+						type: "menuType"
+					},
+				});
+			}
+		});
+
 		let rows = [];
 		
 		const rawOrders = storeAux.state.orders;

@@ -56,6 +56,7 @@
 			},
 		},
 		mounted: function() {
+			this.store.getMenuTypes();
 			this.store.getOrders(todayString);
 		},
 		computed: {
