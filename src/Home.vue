@@ -1,198 +1,219 @@
 
 <template>
-	<div class="container">
-		<img 
-			alt="Casa Solaria" 
-			src="./assets/casa_solaria.jpg"
-			style="width:15%;"
-		>
+	<b-container>
+		<div class="d-flex align-items-center mb-4">
+			<img 
+				alt="Casa Solaria" 
+				src="./assets/casa_solaria.jpg"
+				style="margin-right:20px;"
+				width="80px"
+			>
 
-		<h1>Desayunos en Casa Solaria</h1>
+			<h1>Desayunos en Casa Solaria</h1>
+		</div>
 
 		<div v-show="!store.state.success && !store.state.error && !store.state.loading">
 			<b-form @submit="onSubmit" @reset="onReset" v-if="show">
 
-				<b-form-group
-					id="input-group-1"
-					label="Número de habitación"
-					label-for="input-1"
-					description="Room number"
-					class="text-left p-4"
+				<b-card
+					no-body
 				>
-					<b-form-input
-						id="input-1"
-						v-model="form.name"
-						required
-						placeholder="Introduzca su número de habitación"
-						class="w-50"
-					></b-form-input>
-				</b-form-group>
+					<b-card-body>
+						<b-row>
+							<b-col md="6">
+								<b-form-group
+									id="input-group-1"
+									label="Número de habitación"
+									label-for="input-1"
+									description="Room number"
+									class="py-3"
+								>
+									<b-form-input
+										id="input-1"
+										v-model="form.name"
+										required
+										placeholder="Introduzca su número de habitación"
+									></b-form-input>
+								</b-form-group>
+							</b-col>
+							<b-col md="6">
+								<b-form-group
+									id="input-group-3"
+									label="E-Mail"
+									label-for="input-3"
+									description="Guest e-mail"
+									class="py-3"
+								>
+									<b-form-input
+										id="input-3"
+										v-model="form.email"
+										required
+										placeholder="Introduzca su e-mail"
+										type="email"
+									></b-form-input>
+								</b-form-group>
+							</b-col>
+							<b-col md="6">
+								<b-form-group
+									id="input-group-6"
+									label="Fecha"
+									label-for="date-1"
+									description="Date"
+									class="py-3"
+								>
+									<b-form-datepicker 
+										id="date-1"
+										v-model="form.date" 
+										:min="min" 
+										:max="max" 
+										locale="en"
+										required
+									/>
+								</b-form-group>
+							</b-col>
+							<b-col md="6">
+								<b-form-group
+									id="input-group-6"
+									label="Hora para desayunar"
+									label-for="time-1"
+									description="Breakfast time"
+									class="py-3"
+								>
+									<b-form-timepicker
+										id="time-1" 
+										v-model="form.time"
+										@input="onTimeChanged"
+										locale="en"
+										hide-header
+										:hour12="false"
+										minutes-step="15"
+										required
+									/>
+								</b-form-group>
+							</b-col>
+						</b-row>
+					</b-card-body>
 
-				<b-form-group
-					id="input-group-3"
-					label="E-Mail"
-					label-for="input-3"
-					description="Guest e-mail"
-					class="text-left p-4"
-				>
-					<b-form-input
-						id="input-3"
-						v-model="form.email"
-						required
-						placeholder="Introduzca su e-mail"
-						class="w-50"
-						type="email"
-					></b-form-input>
-				</b-form-group>
-
-				<b-form-group
-					id="input-group-6"
-					label="Fecha"
-					label-for="date-1"
-					description="Date"
-					class="text-left p-4"
-				>
-					<b-form-datepicker 
-						id="date-1"
-						v-model="form.date" 
-						:min="min" 
-						:max="max" 
-						locale="en"
-						class="w-50"
-						required
-					/>
-				</b-form-group>
-
-				<b-form-group
-					id="input-group-6"
-					label="Hora para desayunar"
-					label-for="time-1"
-					description="Breakfast time"
-					class="text-left p-4"
-				>
-					<b-form-timepicker
-						id="time-1" 
-						v-model="form.time"
-						@input="onTimeChanged"
-						locale="en"
-						hide-header
-						:hour12="false"
-						minutes-step="15"
-						required
-					/>
-				</b-form-group>
-
-				<b-form-group
-					id="input-group-2"
-					label="Cantidad de huéspedes en la habitación"
-					label-for="input-2"
-					description="Number of guests in the room"
-					class="text-left p-4"
-				>
-					<b-form-select 
-						v-model="form.guests" 
-						:options="guestsOptions"
-						placeholder="Introduzca la cantidad de huéspedes"
-						class="w-50"
-					/>
-
-				</b-form-group>
-
-				<div v-if="form.guests > 0">
-					<b-card no-body>
-						<b-tabs 
-							card
-							@input="onTabSelect"
+					<hr class="m-0">
+					
+					<b-card-body>
+						<b-form-group
+							id="input-group-2"
+							label="Cantidad de huéspedes en la habitación"
+							label-for="input-2"
+							description="Number of guests in the room"
+							class="py-3"
 						>
-							<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Guest '+n">
-								<b-card-text>
-									<b-form-group
-										:key="'menu_'+n"
-										label="Menú"
-										label-for="input-4"
-										description="Seleccione menú"
-										class="text-left p-4"
-									>
-										<b-form-select 
-											class="w-50"
-											@change="onMenuChanged"
-											:options="menuTypes"
-											required
-										>
-										</b-form-select>
-									</b-form-group>
+							<b-form-select 
+								v-model="form.guests" 
+								:options="guestsOptions"
+								placeholder="Introduzca la cantidad de huéspedes"
+							/>
 
-									<b-list-group
-										v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === '0'"
-									>
-										<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
-										<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
-										<b-list-group-item>Porción de pastelería hecha en casa.</b-list-group-item>
-										<b-list-group-item>Medialuna</b-list-group-item>
-										<b-list-group-item>Yogur de la casa</b-list-group-item>
-										<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
-										<b-list-group-item>Jugo de naranja.</b-list-group-item>
-										<b-list-group-item>Huevos revueltos.</b-list-group-item>
-										<b-list-group-item>Mantequilla.</b-list-group-item>
-										<b-list-group-item>Café.</b-list-group-item>
-										<b-list-group-item>Leche</b-list-group-item>
-										<b-list-group-item>Agua caliente</b-list-group-item>
-										<b-list-group-item>Te</b-list-group-item>
-									</b-list-group>
+						</b-form-group>
 
-									<b-list-group
-										v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 1"
-									>
-										<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
-										<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
-										<b-list-group-item>Mermelada</b-list-group-item>
-										<b-list-group-item>Mantequilla</b-list-group-item>
-										<b-list-group-item>Jugo de naranja</b-list-group-item>
-										<b-list-group-item>Café</b-list-group-item>
-										<b-list-group-item>Leche</b-list-group-item>
-										<b-list-group-item>Jugo</b-list-group-item>
-										<b-list-group-item>Agua caliente</b-list-group-item>
-									</b-list-group>
+						<div v-if="form.guests > 0">
+							<b-card no-body>
+								<b-tabs 
+									card
+									@input="onTabSelect"
+								>
+									<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Guest '+n">
+										<b-card-text>
+											<b-form-group
+												:key="'menu_'+n"
+												label="Menú"
+												label-for="input-4"
+												description="Seleccione menú"
+												class="py-3"
+											>
+												<b-form-select 
+													@change="onMenuChanged"
+													:options="menuTypes"
+													required
+												>
+												</b-form-select>
+											</b-form-group>
 
-									<b-list-group
-										v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 4"
-									>
-										<b-list-group-item>3 Galletas Artesanales</b-list-group-item>
-										<b-list-group-item>1 Fruta</b-list-group-item>
-										<b-list-group-item>1 Leche Saborizada</b-list-group-item>
-										<b-list-group-item>1 Sandwich de Jamón queso</b-list-group-item>
-										<b-list-group-item>1 Muffin</b-list-group-item>
-									</b-list-group>
+											<b-list-group
+												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === '0'"
+											>
+												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
+												<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
+												<b-list-group-item>Porción de pastelería hecha en casa.</b-list-group-item>
+												<b-list-group-item>Medialuna</b-list-group-item>
+												<b-list-group-item>Yogur de la casa</b-list-group-item>
+												<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
+												<b-list-group-item>Jugo de naranja.</b-list-group-item>
+												<b-list-group-item>Huevos revueltos.</b-list-group-item>
+												<b-list-group-item>Mantequilla.</b-list-group-item>
+												<b-list-group-item>Café.</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Agua caliente</b-list-group-item>
+												<b-list-group-item>Te</b-list-group-item>
+											</b-list-group>
 
-									<b-table 
-										v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
-										:key="'product_'+n"
-										class="table thead-dark table-striped table-bordered table-hover"
-										selectable
-										select-mode="multi"
-										:items="products"
-										:fields="fields"
-										@row-selected="onRowSelected"
-									>
-									<template v-slot:cell(selected)="{ rowSelected }">
-										<template v-if="rowSelected">
-											<span aria-hidden="true">&check;</span>
-											<span class="sr-only">Selected</span>
-										</template>
-										<template v-else>
-											<span aria-hidden="true">&nbsp;</span>
-											<span class="sr-only">Not selected</span>
-										</template>
-									</template>
-									</b-table>
-								</b-card-text>
-							</b-tab>
-						</b-tabs>
-					</b-card>
-				</div>
+											<b-list-group
+												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 1"
+											>
+												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
+												<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
+												<b-list-group-item>Mermelada</b-list-group-item>
+												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Jugo</b-list-group-item>
+												<b-list-group-item>Agua caliente</b-list-group-item>
+											</b-list-group>
 
-				<b-button type="submit" class="btn-lg btn-success float-left m-2 p-3" variant="primary">Submit</b-button>
-				<!-- <b-button type="reset" class="btn-xs float-left m-2 p-3" variant="danger">Reset</b-button> -->
+											<b-list-group
+												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 4"
+											>
+												<b-list-group-item>3 Galletas Artesanales</b-list-group-item>
+												<b-list-group-item>1 Fruta</b-list-group-item>
+												<b-list-group-item>1 Leche Saborizada</b-list-group-item>
+												<b-list-group-item>1 Sandwich de Jamón queso</b-list-group-item>
+												<b-list-group-item>1 Muffin</b-list-group-item>
+											</b-list-group>
+
+											<b-table 
+												v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
+												:key="'product_'+n"
+												class="table thead-dark table-striped table-bordered table-hover"
+												selectable
+												select-mode="multi"
+												:items="products"
+												:fields="fields"
+												@row-selected="onRowSelected"
+											>
+											<template v-slot:cell(selected)="{ rowSelected }">
+												<template v-if="rowSelected">
+													<span aria-hidden="true">&check;</span>
+													<span class="sr-only">Selected</span>
+												</template>
+												<template v-else>
+													<span aria-hidden="true">&nbsp;</span>
+													<span class="sr-only">Not selected</span>
+												</template>
+											</template>
+											</b-table>
+										</b-card-text>
+									</b-tab>
+								</b-tabs>
+							</b-card>
+						</div>
+					</b-card-body>
+					
+					<hr class="m-0">
+
+					<b-card-body class="text-right">
+						<b-button type="submit" class="btn-lg btn-success" variant="primary">Submit</b-button>
+						<!-- <b-button type="reset" class="btn-xs" variant="danger">Reset</b-button> -->
+					</b-card-body>
+				</b-card>
+
+
 			</b-form>
 		</div>
 		<div v-show="store.state.loading">
@@ -204,7 +225,7 @@
 		<div v-show="store.state.error">
 			<h2>We couldn't submit the order. Please try again later</h2>
 		</div>
-	</div>
+	</b-container>
 </template>
 
 <script>
@@ -258,13 +279,13 @@
 				console.log(value);
 				if(value < "08:00:00"){
 					this.form.time = "08:00:00";
-					console.log("muy temprano");
+					console.log("too early");
 				}else if(value > "11:00:00"){
 					this.form.time = "11:00:00";
-					console.log("muy tarde");
+					console.log("too late");
 				}else{
 					this.form.time = value;
-					console.log("lito");
+					console.log("just OK");
 				}
 			},
 			onMenuChanged(value){
@@ -368,14 +389,3 @@
 		},
 	}
 </script>
-
-<style>
-#app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
-</style>

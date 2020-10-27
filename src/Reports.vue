@@ -1,36 +1,43 @@
 
 <template>
-	<div class="container">
-		<img 
-			alt="Casa Solaria" 
-			src="./assets/casa_solaria.jpg"
-			style="width:15%;"
-		>
-
-		<h1>Desayunos en Casa Solaria</h1>
-
-
-		<b-form>
-			<b-form-group
-				id="input-group-6"
-				label="Fecha"
-				label-for="date-1"
-				description="Date"
-				class="text-left p-4"
+	<b-container>
+		<div class="d-flex align-items-center mb-4">
+			<img 
+				alt="Casa Solaria" 
+				src="./assets/casa_solaria.jpg"
+				style="margin-right:20px;"
+				width="80px"
 			>
-				<b-form-datepicker 
-					@input="dateSelected"
-					id="date-1"
-					v-model="date" 
-					locale="en"
-					class="w-50"
-					required
-				/>
-			</b-form-group>
-		</b-form>
 
-		<data-table v-bind="bindings"/>
-	</div>
+			<h1>Desayunos en Casa Solaria</h1>
+		</div>
+
+		<b-card
+			no-body
+		>
+			<b-card-body>
+				<b-form>
+					<b-form-group
+						id="input-group-6"
+						label="Fecha"
+						label-for="date-1"
+						description="Date"
+						class="py-3"
+					>
+						<b-form-datepicker 
+							@input="dateSelected"
+							id="date-1"
+							v-model="date" 
+							locale="en"
+							required
+						/>
+					</b-form-group>
+				</b-form>
+
+				<data-table v-bind="bindings"/>
+			</b-card-body>
+		</b-card>
+	</b-container>
 </template>
 
 <script>
@@ -87,14 +94,3 @@
 		}
 	}
 </script>
-
-<style>
-#app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
-</style>
