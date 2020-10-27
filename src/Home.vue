@@ -95,7 +95,7 @@
 					</b-card-body>
 
 					<hr class="m-0">
- 					
+					
 					<b-card-body>
 						<b-form-group
 							label="Cantidad de huéspedes en la habitación"
@@ -108,6 +108,7 @@
 								v-model="form.guests" 
 								min="1" 
 								max="4"
+								style="width: 50%;"
 							/>
 
 						</b-form-group>
@@ -238,7 +239,7 @@
 			const minDate = new Date(today);
 			minDate.setDate(minDate.getDate());
 			const maxDate = new Date(today);
-			maxDate.setDate(maxDate.getDate() + 4);
+			maxDate.setDate(maxDate.getDate() + 2);
 
 			return {
 				form: {
