@@ -262,7 +262,18 @@
 				products: store.state.products,
 				menuTypes: store.state.menuTypes,
 				show: true,
-				fields: ['name', 'selected'],
+				fields: [
+					{
+						key: 'name',
+						sortable: false
+					},
+					{
+						key: 'selected',
+						sortable: false,
+						tdClass:["text-center"],
+					},
+				],
+				
 				tabSelected: 0,
 
 				success: store.state.success,
