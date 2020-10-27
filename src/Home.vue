@@ -95,19 +95,19 @@
 					</b-card-body>
 
 					<hr class="m-0">
-					
+ 					
 					<b-card-body>
 						<b-form-group
-							id="input-group-2"
 							label="Cantidad de huéspedes en la habitación"
-							label-for="input-2"
+							label-for="guestsQty"
 							description="Number of guests in the room"
 							class="py-3"
 						>
-							<b-form-select 
+							<b-form-spinbutton 
+								id="guestsQty"
 								v-model="form.guests" 
-								:options="guestsOptions"
-								placeholder="Introduzca la cantidad de huéspedes"
+								min="1" 
+								max="4"
 							/>
 
 						</b-form-group>
@@ -212,8 +212,6 @@
 						<!-- <b-button type="reset" class="btn-xs" variant="danger">Reset</b-button> -->
 					</b-card-body>
 				</b-card>
-
-
 			</b-form>
 		</div>
 		<div v-show="store.state.loading">
@@ -252,12 +250,6 @@
 					date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
 					time: "08:00:00",
 				},
-				guestsOptions: [
-					{ value: 1, text: "1 Huésped" },
-					{ value: 2, text: "2 Huéspedes" },
-					{ value: 3, text: "3 Huéspedes" },
-					{ value: 4, text: "4 Huéspedes" },
-				],
 				store: store,
 				products: store.state.products,
 				menuTypes: store.state.menuTypes,
