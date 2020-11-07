@@ -203,17 +203,25 @@
 					<hr class="m-0">
 
 					<b-card-body class="text-right">
-						<b-button type="submit" class="btn-lg btn-success" variant="primary">Submit</b-button>
+						<b-button type="submit" class="btn-lg btn-success" variant="primary">Enviar</b-button>
 						<!-- <b-button type="reset" class="btn-xs" variant="danger">Reset</b-button> -->
 					</b-card-body>
 				</b-card>
 			</b-form>
 		</div>
 		<div v-show="store.state.loading">
-			<h2>LOADING</h2>
+			<b-card
+			>
+				<h3>Enviando</h3> 
+				Por favor espere.
+			</b-card>
 		</div>
 		<div v-show="store.state.success">
-			<h2>Thanks! Order sent!</h2>
+			<b-card
+			>
+				<h3>¡Muchas gracias!</h3>
+				Desayuno pedido.
+			</b-card>
 		</div>
 		<div v-show="store.state.error">
 			<h2>We couldn't submit the order. Please try again later</h2>
@@ -291,22 +299,7 @@
 			}
 		},
 		methods: {
-			onTimeChanged(value){
-				console.log("value");
-				console.log(value);
-				if(value < "08:00:00"){
-					this.form.time = "08:00:00";
-					console.log("too early");
-				}else if(value > "11:00:00"){
-					this.form.time = "11:00:00";
-					console.log("too late");
-				}else{
-					this.form.time = value;
-					console.log("just OK");
-				}
-			},
 			onMenuChanged(value){
-
 				const values = this.menuTypes.map(function(o) { return o.value });
 				const index = values.indexOf(value);
 				let text = "";

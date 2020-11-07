@@ -19,7 +19,7 @@ let store = {
 		products: [],
 		menuTypes: [],
 		orders: [],
-		success: false,
+		success: true,
 		error: false,
 		loading: false,
 		table: {columns: [], rows: []},
