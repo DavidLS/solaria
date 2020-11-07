@@ -79,15 +79,9 @@
 									description="Breakfast time"
 									class="py-3"
 								>
-									<b-form-timepicker
-										id="time-1" 
-										v-model="form.time"
-										@input="onTimeChanged"
-										locale="en"
-										hide-header
-										:hour12="false"
-										minutes-step="15"
-										required
+									<b-form-select 
+										v-model="form.time" 
+										:options="timeOptions"
 									/>
 								</b-form-group>
 							</b-col>
@@ -249,11 +243,30 @@
 					selectedMenuType: [[]],
 					selectedProducts: [[]],
 					date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
-					time: "08:00:00",
+					time: null,
 				},
 				store: store,
 				products: store.state.products,
 				menuTypes: store.state.menuTypes,
+				timeOptions: [
+					{ value: null, text: 'Seleccione un horario' },
+					{ value: '08:00', text: '08:00' },
+					{ value: '08:15', text: '08:15' },
+					{ value: '08:30', text: '08:30' },
+					{ value: '08:45', text: '08:45' },
+
+					{ value: '09:00', text: '09:00' },
+					{ value: '09:15', text: '09:15' },
+					{ value: '09:30', text: '09:30' },
+					{ value: '09:45', text: '09:45' },
+
+					{ value: '10:00', text: '10:00' },
+					{ value: '10:15', text: '10:15' },
+					{ value: '10:30', text: '10:30' },
+					{ value: '10:45', text: '10:45' },
+					
+					{ value: '11:00', text: '11:00' },
+				],
 				show: true,
 				fields: [
 					{
