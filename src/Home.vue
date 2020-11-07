@@ -392,7 +392,6 @@
 				})
 			}
 		},
-		
 		mounted: function() {
 			this.store.getProducts();
 			this.store.getMenuTypes();

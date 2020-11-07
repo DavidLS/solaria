@@ -19,7 +19,7 @@ let store = {
 		products: [],
 		menuTypes: [],
 		orders: [],
-		success: true,
+		success: false,
 		error: false,
 		loading: false,
 		table: {columns: [], rows: []},
@@ -76,6 +76,7 @@ let store = {
 			.then(function() {
 				storeAux.state.success = true;
 				storeAux.state.loading = false;
+				setTimeout(function () { window.location.reload(); }, 10000);
 			})
 			.catch(function(error) {
 				storeAux.state.error = true;
