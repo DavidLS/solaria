@@ -91,21 +91,44 @@
 					<hr class="m-0">
 					
 					<b-card-body>
-						<b-form-group
-							label="Cantidad de huéspedes en la habitación"
-							label-for="guestsQty"
-							description="Number of guests in the room"
-							class="py-3"
+						<b-row
+							class="p-3"
 						>
-							<b-form-spinbutton 
-								id="guestsQty"
-								v-model="form.guests" 
-								min="1" 
-								max="4"
-								style="width: 50%;"
-							/>
+							<b-col md="6">
+								<div 
+									class="p-3"
+									style="box-shadow: 0 0 10px #DCDCDC;"
+								>
+									<p
+										class="text-center mb-4"
+									>
+										Cada huesped puede personalizar su menú a su gusto
+									</p>
+									<p
+										class="text-center small"
+									>
+										Every host can choose a different menu.
+									</p>
+								</div>
+							</b-col>
+							<b-col md="6">
+								<b-form-group
+									label="Cantidad de huéspedes en la habitación"
+									label-for="guestsQty"
+									description="Number of guests in the room"
+									class="py-3"
+								>
+									<b-form-spinbutton 
+										id="guestsQty"
+										v-model="form.guests" 
+										min="1" 
+										max="4"
+										style="width: 50%;"
+									/>
 
-						</b-form-group>
+								</b-form-group>
+							</b-col>
+						</b-row>
 
 						<div v-if="form.guests > 0">
 							<b-card no-body>
@@ -171,6 +194,22 @@
 												<b-list-group-item>1 Sandwich de Jamón queso</b-list-group-item>
 												<b-list-group-item>1 Muffin</b-list-group-item>
 											</b-list-group>
+
+											<div 
+												class="py-3"
+												v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
+											>
+												<p
+													class="text-center mb-0"
+												>
+													Te invitamos a que personalicés tu menú como más quieras.
+												</p>
+												<p
+													class="text-center small"
+												>
+													You can choose any product you want
+												</p>
+											</div>
 
 											<b-table 
 												v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
@@ -279,12 +318,15 @@
 				fields: [
 					{
 						key: 'name',
+						label: 'Producto',
 						sortable: false
 					},
 					{
 						key: 'selected',
+						label: 'Seleccione',
 						sortable: false,
 						tdClass:["text-center"],
+						thClass:["text-center"],
 					},
 				],
 				
