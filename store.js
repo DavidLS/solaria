@@ -96,7 +96,8 @@ let store = {
 				item.id = doc.id
 				orders.push(item)
 			});
-
+			console.log("orders");
+			console.log(orders);
 			storeAux.setOrdersAction(orders);
 		})
 		.catch(function(error) {
@@ -168,26 +169,26 @@ let store = {
 			}
 			counter++;
 
-			order.selectedProducts.forEach(productRaw => {
-				const productInColumn = products.findIndex(function(item) {
-					return item.id === productRaw.id;
-				});
+			// order.selectedProducts.forEach(productRaw => {
+			// 	const productInColumn = products.findIndex(function(item) {
+			// 		return item.id === productRaw.id;
+			// 	});
 	
-				if(productInColumn === -1){
-					const product = {
-						id: {
-							id: productRaw.id,
-							type: "product",
-						},
-						label: productRaw.name,
-						field: slugify(productRaw.name),
-					};
-					products.push(product);
-				}
+			// 	if(productInColumn === -1){
+			// 		const product = {
+			// 			id: {
+			// 				id: productRaw.id,
+			// 				type: "product",
+			// 			},
+			// 			label: productRaw.name,
+			// 			field: slugify(productRaw.name),
+			// 		};
+			// 		products.push(product);
+			// 	}
 
-				const slug = slugify(productRaw.name);
-				row[slug]= productRaw.qty;
-			});
+			// 	const slug = slugify(productRaw.name);
+			// 	row[slug]= productRaw.qty;
+			// });
 
 			order.selectedMenuType.forEach(menuType => {
 				const slug = slugify(menuType.name);

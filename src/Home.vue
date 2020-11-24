@@ -154,35 +154,34 @@
 											</b-form-group>
 
 											<b-list-group
-												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === '0'"
+												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === 0"
 											>
-												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
-												<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
-												<b-list-group-item>Porción de pastelería hecha en casa.</b-list-group-item>
-												<b-list-group-item>Medialuna</b-list-group-item>
-												<b-list-group-item>Yogur de la casa</b-list-group-item>
-												<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
-												<b-list-group-item>Jugo de naranja.</b-list-group-item>
-												<b-list-group-item>Huevos revueltos.</b-list-group-item>
-												<b-list-group-item>Mantequilla.</b-list-group-item>
-												<b-list-group-item>Café.</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
 												<b-list-group-item>Leche</b-list-group-item>
 												<b-list-group-item>Agua caliente</b-list-group-item>
-												<b-list-group-item>Te</b-list-group-item>
+												<b-list-group-item>Té</b-list-group-item>
+												<b-list-group-item>Yogur Solaria</b-list-group-item>
+												<b-list-group-item>Porción de frutas frescas</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Porción de pan blanco de molde Solaria</b-list-group-item>
+												<b-list-group-item>Porción de pan integral de molde Solaria</b-list-group-item>
+												<b-list-group-item>Huevos revueltos</b-list-group-item>
+												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Porción de pastelería Solaria</b-list-group-item>
 											</b-list-group>
 
 											<b-list-group
 												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 1"
 											>
-												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
-												<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
+												<b-list-group-item>Agua caliente</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
+												<b-list-group-item>Té</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Porción de pan blanco de molde Solaria</b-list-group-item>
+												<b-list-group-item>Porción de huevo revuelto</b-list-group-item>
 												<b-list-group-item>Mermelada</b-list-group-item>
 												<b-list-group-item>Mantequilla</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
-												<b-list-group-item>Café</b-list-group-item>
-												<b-list-group-item>Leche</b-list-group-item>
-												<b-list-group-item>Jugo</b-list-group-item>
-												<b-list-group-item>Agua caliente</b-list-group-item>
 											</b-list-group>
 
 											<b-list-group
@@ -195,7 +194,6 @@
 												<b-list-group-item>1 Muffin</b-list-group-item>
 											</b-list-group>
 
-
 											<b-list-group
 												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
 											>
@@ -203,19 +201,19 @@
 												<b-list-group-item>Café</b-list-group-item>
 												<b-list-group-item>Té</b-list-group-item>
 												<b-list-group-item>Leche</b-list-group-item>
-												<b-list-group-item>Granola de la casa</b-list-group-item>
+												<b-list-group-item>Granola Solaria</b-list-group-item>
 												<b-list-group-item>Porción de frutas</b-list-group-item>
-												<b-list-group-item>Yogurt natural de la casa</b-list-group-item>
+												<b-list-group-item>Yogurt natural Solaria</b-list-group-item>
 												<b-list-group-item>Jugo de naranja</b-list-group-item>
-												<b-list-group-item>Variedad de panes de la casa</b-list-group-item>
+												<b-list-group-item>Variedad de panes Solaria</b-list-group-item>
 												<b-list-group-item>Mantequilla</b-list-group-item>
 												<b-list-group-item>Huevo revuelto</b-list-group-item>
 												<b-list-group-item>Jamón</b-list-group-item>
 												<b-list-group-item>Queso</b-list-group-item>
-												<b-list-group-item>Palta molida</b-list-group-item>
-												<b-list-group-item>Mermelada de la casa</b-list-group-item>
-												<b-list-group-item>Porción de pastelería Casa Solaria</b-list-group-item>
-												<b-list-group-item>Medialuna Casa Solaria</b-list-group-item>
+												<b-list-group-item>Palta molida </b-list-group-item>
+												<b-list-group-item>Mermelada Solaria</b-list-group-item>
+												<b-list-group-item>Porción de pastelería Solaria</b-list-group-item>
+												<b-list-group-item>Medialuna Solaria</b-list-group-item>
 											</b-list-group>
 
 											<!-- <b-table 
@@ -418,7 +416,6 @@
 					time: this.form.time,
 					date: this.form.date,
 				}
-
 				this.store.setOrder(order);
 			},
 			onReset(event) {
