@@ -156,33 +156,32 @@
 											<b-list-group
 												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === '0'"
 											>
-												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
-												<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
-												<b-list-group-item>Porción de pastelería hecha en casa.</b-list-group-item>
-												<b-list-group-item>Medialuna</b-list-group-item>
-												<b-list-group-item>Yogur de la casa</b-list-group-item>
-												<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
-												<b-list-group-item>Jugo de naranja.</b-list-group-item>
-												<b-list-group-item>Huevos revueltos.</b-list-group-item>
-												<b-list-group-item>Mantequilla.</b-list-group-item>
-												<b-list-group-item>Café.</b-list-group-item>
-												<b-list-group-item>Leche</b-list-group-item>
 												<b-list-group-item>Agua caliente</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
+												<b-list-group-item>Huevos revueltos</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
+												<b-list-group-item>Porción de pan blanco de molde</b-list-group-item>
+												<b-list-group-item>Porción de pan integral de molde</b-list-group-item>
+												<b-list-group-item>Porción de pastelería hecha en casa (4 unidades)</b-list-group-item>
 												<b-list-group-item>Te</b-list-group-item>
+												<b-list-group-item>Yogur de la casa</b-list-group-item>
 											</b-list-group>
 
 											<b-list-group
 												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 1"
 											>
-												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
-												<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
-												<b-list-group-item>Mermelada</b-list-group-item>
-												<b-list-group-item>Mantequilla</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
-												<b-list-group-item>Café</b-list-group-item>
-												<b-list-group-item>Leche</b-list-group-item>
-												<b-list-group-item>Jugo</b-list-group-item>
 												<b-list-group-item>Agua caliente</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
+												<b-list-group-item>Jugo</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Mermelada</b-list-group-item>
+												<b-list-group-item>Porción de huevo revuelto</b-list-group-item>
+												<b-list-group-item>Porción de pan blanco de molde</b-list-group-item>
 											</b-list-group>
 
 											<b-list-group
@@ -298,20 +297,11 @@
 				timeOptions: [
 					{ value: null, text: 'Seleccione un horario' },
 					{ value: '08:00', text: '08:00' },
-					{ value: '08:15', text: '08:15' },
 					{ value: '08:30', text: '08:30' },
-					{ value: '08:45', text: '08:45' },
-
 					{ value: '09:00', text: '09:00' },
-					{ value: '09:15', text: '09:15' },
 					{ value: '09:30', text: '09:30' },
-					{ value: '09:45', text: '09:45' },
-
 					{ value: '10:00', text: '10:00' },
-					{ value: '10:15', text: '10:15' },
 					{ value: '10:30', text: '10:30' },
-					{ value: '10:45', text: '10:45' },
-					
 					{ value: '11:00', text: '11:00' },
 				],
 				show: true,
