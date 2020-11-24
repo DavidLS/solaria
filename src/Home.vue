@@ -154,7 +154,7 @@
 											</b-form-group>
 
 											<b-list-group
-												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === 0"
+												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === '0'"
 											>
 												<b-list-group-item>Café</b-list-group-item>
 												<b-list-group-item>Leche</b-list-group-item>
