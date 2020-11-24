@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 let store = {
 	debug: true,
 	state: {
-		products: [],
+		//products: [],
 		menuTypes: [],
 		orders: [],
 		success: false,
@@ -25,26 +25,26 @@ let store = {
 		table: {columns: [], rows: []},
 	},
 
-	setProductsAction(products){
-		this.state.products.splice(0,this.state.products.length);
-		products.forEach(element => {
-			this.state.products.push(element);
-		});
-	},
-	getProducts(){
-		var storeAux = this;
-		firebase.firestore().collection('products').orderBy("name").get()
-			.then(snapshot => {
-				let products = [];
-				snapshot.forEach(doc => {
-					let item = doc.data()
-					item.id = doc.id
-					products.push(item)
-				});
-				products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
-				storeAux.setProductsAction(products);
-			})
-	},
+	// setProductsAction(products){
+	// 	this.state.products.splice(0,this.state.products.length);
+	// 	products.forEach(element => {
+	// 		this.state.products.push(element);
+	// 	});
+	// },
+	// getProducts(){
+	// 	var storeAux = this;
+	// 	firebase.firestore().collection('products').orderBy("name").get()
+	// 		.then(snapshot => {
+	// 			let products = [];
+	// 			snapshot.forEach(doc => {
+	// 				let item = doc.data()
+	// 				item.id = doc.id
+	// 				products.push(item)
+	// 			});
+	// 			products.sort( (a, b) => parseInt(a.id) > parseInt(b.id) )
+	// 			storeAux.setProductsAction(products);
+	// 		})
+	// },
 	setMenuTypesAction(types){
 		this.state.menuTypes.splice(0,this.state.menuTypes.length);
 		types.forEach(element => {

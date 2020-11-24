@@ -156,32 +156,33 @@
 											<b-list-group
 												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value === '0'"
 											>
-												<b-list-group-item>Agua caliente</b-list-group-item>
-												<b-list-group-item>Café</b-list-group-item>
-												<b-list-group-item>Huevos revueltos</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
-												<b-list-group-item>Leche</b-list-group-item>
-												<b-list-group-item>Mantequilla</b-list-group-item>
-												<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
-												<b-list-group-item>Porción de pan blanco de molde</b-list-group-item>
-												<b-list-group-item>Porción de pan integral de molde</b-list-group-item>
-												<b-list-group-item>Porción de pastelería hecha en casa (4 unidades)</b-list-group-item>
-												<b-list-group-item>Te</b-list-group-item>
+												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
+												<b-list-group-item>Porción de pan integral de molde.</b-list-group-item>
+												<b-list-group-item>Porción de pastelería hecha en casa.</b-list-group-item>
+												<b-list-group-item>Medialuna</b-list-group-item>
 												<b-list-group-item>Yogur de la casa</b-list-group-item>
+												<b-list-group-item>Porción de frutas frescas.</b-list-group-item>
+												<b-list-group-item>Jugo de naranja.</b-list-group-item>
+												<b-list-group-item>Huevos revueltos.</b-list-group-item>
+												<b-list-group-item>Mantequilla.</b-list-group-item>
+												<b-list-group-item>Café.</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Agua caliente</b-list-group-item>
+												<b-list-group-item>Te</b-list-group-item>
 											</b-list-group>
 
 											<b-list-group
 												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 1"
 											>
-												<b-list-group-item>Agua caliente</b-list-group-item>
-												<b-list-group-item>Café</b-list-group-item>
-												<b-list-group-item>Jugo</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
-												<b-list-group-item>Leche</b-list-group-item>
-												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Porción de pan blanco de molde.</b-list-group-item>
+												<b-list-group-item>Porción de huevo revuelto.</b-list-group-item>
 												<b-list-group-item>Mermelada</b-list-group-item>
-												<b-list-group-item>Porción de huevo revuelto</b-list-group-item>
-												<b-list-group-item>Porción de pan blanco de molde</b-list-group-item>
+												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Jugo</b-list-group-item>
+												<b-list-group-item>Agua caliente</b-list-group-item>
 											</b-list-group>
 
 											<b-list-group
@@ -194,23 +195,30 @@
 												<b-list-group-item>1 Muffin</b-list-group-item>
 											</b-list-group>
 
-											<div 
-												class="py-3"
-												v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
-											>
-												<p
-													class="text-center mb-0"
-												>
-													Te invitamos a que personalicés tu menú como más quieras.
-												</p>
-												<p
-													class="text-center small"
-												>
-													You can choose any product you want
-												</p>
-											</div>
 
-											<b-table 
+											<b-list-group
+												v-if="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
+											>
+												<b-list-group-item>Agua caliente</b-list-group-item>
+												<b-list-group-item>Café</b-list-group-item>
+												<b-list-group-item>Té</b-list-group-item>
+												<b-list-group-item>Leche</b-list-group-item>
+												<b-list-group-item>Granola de la casa</b-list-group-item>
+												<b-list-group-item>Porción de frutas</b-list-group-item>
+												<b-list-group-item>Yogurt natural de la casa</b-list-group-item>
+												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Variedad de panes de la casa</b-list-group-item>
+												<b-list-group-item>Mantequilla</b-list-group-item>
+												<b-list-group-item>Huevo revuelto</b-list-group-item>
+												<b-list-group-item>Jamón</b-list-group-item>
+												<b-list-group-item>Queso</b-list-group-item>
+												<b-list-group-item>Palta molida</b-list-group-item>
+												<b-list-group-item>Mermelada de la casa</b-list-group-item>
+												<b-list-group-item>Porción de pastelería Casa Solaria</b-list-group-item>
+												<b-list-group-item>Medialuna Casa Solaria</b-list-group-item>
+											</b-list-group>
+
+											<!-- <b-table 
 												v-show="form.selectedMenuType[tabSelected] && form.selectedMenuType[tabSelected].value == 2"
 												:key="'product_'+n"
 												class="table thead-dark table-striped table-bordered table-hover"
@@ -230,7 +238,7 @@
 													<span class="sr-only">Not selected</span>
 												</template>
 											</template>
-											</b-table>
+											</b-table> -->
 										</b-card-text>
 									</b-tab>
 								</b-tabs>
@@ -287,12 +295,12 @@
 					name: '',
 					guests: 1,
 					selectedMenuType: [[]],
-					selectedProducts: [[]],
+					//selectedProducts: [[]],
 					date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
 					time: null,
 				},
 				store: store,
-				products: store.state.products,
+				//products: store.state.products,
 				menuTypes: store.state.menuTypes,
 				timeOptions: [
 					{ value: null, text: 'Seleccione un horario' },
@@ -348,15 +356,15 @@
 			onTabSelect(tabIndex){
 				this.tabSelected = tabIndex;
 			},
-			onRowSelected(items) {
-				this.$set(this.form.selectedProducts, this.tabSelected, items);
-			},
-			selectAllRows() {
-				this.$refs.selectableTable.selectAllRows();
-			},
-			clearSelected() {
-				this.$refs.selectableTable.clearSelected();
-			},
+			// onRowSelected(items) {
+			// 	this.$set(this.form.selectedProducts, this.tabSelected, items);
+			// },
+			// selectAllRows() {
+			// 	this.$refs.selectableTable.selectAllRows();
+			// },
+			// clearSelected() {
+			// 	this.$refs.selectableTable.clearSelected();
+			// },
 			onSubmit(event) {
 				event.preventDefault();
 
@@ -379,34 +387,34 @@
 					}
 				});
 
-				const rawSelectedProducts = this.form.selectedProducts;
-				let selectedProducts = [];
-				rawSelectedProducts.forEach(productsRaw => {
+				// const rawSelectedProducts = this.form.selectedProducts;
+				// let selectedProducts = [];
+				// rawSelectedProducts.forEach(productsRaw => {
 					
-					productsRaw.forEach(guest => {
-						const index = selectedProducts.findIndex(function(item) {
-							return item.id === guest.id;
-						});
+				// 	productsRaw.forEach(guest => {
+				// 		const index = selectedProducts.findIndex(function(item) {
+				// 			return item.id === guest.id;
+				// 		});
 	
-						if(index !== -1){
-							selectedProducts[index].qty++;
-						}else{
-							const product = {
-								id: guest.id,
-								name: guest.name,
-								qty: 1,
-							};
-							selectedProducts.push(product);
-						}
-					});
-				});
+				// 		if(index !== -1){
+				// 			selectedProducts[index].qty++;
+				// 		}else{
+				// 			const product = {
+				// 				id: guest.id,
+				// 				name: guest.name,
+				// 				qty: 1,
+				// 			};
+				// 			selectedProducts.push(product);
+				// 		}
+				// 	});
+				// });
 
 				const order = {
 					email: this.form.email,
 					name: this.form.name,
 					guests: this.form.guests,
 					selectedMenuType: selectedMenuType,
-					selectedProducts: selectedProducts,
+					//selectedProducts: selectedProducts,
 					time: this.form.time,
 					date: this.form.date,
 				}
@@ -425,7 +433,7 @@
 			}
 		},
 		mounted: function() {
-			this.store.getProducts();
+			//this.store.getProducts();
 			this.store.getMenuTypes();
 		},
 	}
