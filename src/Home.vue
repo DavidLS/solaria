@@ -64,6 +64,8 @@
 									<b-form-datepicker 
 										id="date-1"
 										v-model="form.date" 
+										@input="onDateChange"
+										placeholder="Seleccione una fecha"
 										:min="min" 
 										:max="max" 
 										locale="en"
@@ -81,7 +83,7 @@
 								>
 									<b-form-select 
 										v-model="form.time" 
-										:options="timeOptions"
+										:options="filteredTimeWindows"
 									/>
 								</b-form-group>
 							</b-col>
@@ -276,17 +278,17 @@
 <script>
 	import store from '../store';
 
+	const now = new Date();
+	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+	const todayString = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+	const minDate = new Date(today);
+	minDate.setDate(minDate.getDate());
+	const maxDate = new Date(today);
+	maxDate.setDate(maxDate.getDate() + 2);
+
 	export default {
 		name: 'home',
 		data() {
-
-			const now = new Date();
-			const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-			const minDate = new Date(today);
-			minDate.setDate(minDate.getDate());
-			const maxDate = new Date(today);
-			maxDate.setDate(maxDate.getDate() + 2);
-
 			return {
 				form: {
 					email: '',
@@ -294,22 +296,14 @@
 					guests: 1,
 					selectedMenuType: [[]],
 					//selectedProducts: [[]],
-					date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
+					//date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
+					date: null,
 					time: null,
 				},
 				store: store,
 				//products: store.state.products,
 				menuTypes: store.state.menuTypes,
-				timeOptions: [
-					{ value: null, text: 'Seleccione un horario' },
-					{ value: '08:00', text: '08:00' },
-					{ value: '08:30', text: '08:30' },
-					{ value: '09:00', text: '09:00' },
-					{ value: '09:30', text: '09:30' },
-					{ value: '10:00', text: '10:00' },
-					{ value: '10:30', text: '10:30' },
-					{ value: '11:00', text: '11:00' },
-				],
+				orders: store.state.orders,
 				show: true,
 				fields: [
 					{
@@ -337,6 +331,9 @@
 			}
 		},
 		methods: {
+			onDateChange(date){
+				this.store.getOrders(date);
+			},
 			onMenuChanged(value){
 				const values = this.menuTypes.map(function(o) { return o.value });
 				const index = values.indexOf(value);
@@ -433,5 +430,42 @@
 			//this.store.getProducts();
 			this.store.getMenuTypes();
 		},
+		computed:{
+			filteredTimeWindows: function () {
+				const orders = store.state.orders;
+
+				let choicesRaw = [
+					{ value: null, text: 'Seleccione un horario', count: 2},
+					{ value: '08:00', text: '08:00', count: 2 },
+					{ value: '08:30', text: '08:30', count: 2 },
+					{ value: '09:00', text: '09:00', count: 2 },
+					{ value: '09:30', text: '09:30', count: 2 },
+					{ value: '10:00', text: '10:00', count: 2 },
+					{ value: '10:30', text: '10:30', count: 2 },
+					{ value: '11:00', text: '11:00', count: 2 },
+				];
+
+				orders.forEach(order => {
+					let key = choicesRaw.findIndex(function(choice, index) {
+						if(choice.value == order.time)
+							return true;
+					});
+
+					if(key > 0){
+						choicesRaw[key].count--;
+					}
+
+				});
+
+				let choices = [];
+				choicesRaw.forEach(choice => {
+					if(choice.count > 0){
+						choices.push(choice);
+					}
+				});
+
+				return choices;
+			}
+		}
 	}
 </script>

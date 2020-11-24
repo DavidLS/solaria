@@ -96,8 +96,6 @@ let store = {
 				item.id = doc.id
 				orders.push(item)
 			});
-			console.log("orders");
-			console.log(orders);
 			storeAux.setOrdersAction(orders);
 		})
 		.catch(function(error) {
