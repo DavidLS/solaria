@@ -87,6 +87,23 @@
 									/>
 								</b-form-group>
 							</b-col>
+							<b-col md="6">
+								<b-form-group 
+									label="¿Dónde quiere desayunar?"
+									description="Where do you want to have breakfast?"
+									class="py-3"
+									label-for="radio-group-2"
+								>
+									<b-form-radio-group
+										id="radio-group-2"
+										v-model="form.where"
+										name="radio-sub-component"
+									>
+										<b-form-radio value="room">Habitación</b-form-radio>
+										<b-form-radio value="dining">Comedor</b-form-radio>
+									</b-form-radio-group>
+								</b-form-group>
+							</b-col>
 						</b-row>
 					</b-card-body>
 
@@ -299,6 +316,7 @@
 					//date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
 					date: null,
 					time: null,
+					where: "room",
 				},
 				store: store,
 				//products: store.state.products,
@@ -412,6 +430,7 @@
 					//selectedProducts: selectedProducts,
 					time: this.form.time,
 					date: this.form.date,
+					where: this.form.where,
 				}
 				this.store.setOrder(order);
 			},

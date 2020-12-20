@@ -130,6 +130,12 @@ let store = {
 				sortable: true,
 			},
 			{
+				label: 'Dónde',
+				field: 'where',
+				id: "where",
+				sortable: true,
+			},
+			{
 				label: 'Huespedes',
 				field: 'guests',
 				id: "huespedes",
@@ -157,13 +163,28 @@ let store = {
 		
 		let counter = 1;
 		rawOrders.forEach(order => {
-	
+			
+			let where = "";
+			switch (order.where) {
+				case "room":
+					where = "Habitación";
+					break;
+				case "dining":
+					where = "Comedor";
+					break;
+			
+				default:
+					where = "-";
+					break;
+			}
+
 			let row = {
 				time: order.time,
 				id: counter,
 				email: order.email,
 				room: order.name,
 				guests: order.guests,
+				where: where,
 			}
 			counter++;
 
