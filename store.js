@@ -130,13 +130,13 @@ let store = {
 				sortable: true,
 			},
 			{
-				label: 'Dónde',
+				label: 'Dónde?',
 				field: 'where',
 				id: "where",
 				sortable: true,
 			},
 			{
-				label: 'Huespedes',
+				label: 'Huéspedes',
 				field: 'guests',
 				id: "huespedes",
 				sortable: false,
