@@ -138,7 +138,7 @@
 									card
 									@input="onTabSelect"
 								>
-									<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Guest '+n">
+									<b-tab v-for="n in parseInt(form.guests)" :key="'product_tab_'+n" :title="'Huesped '+n">
 										<b-card-text>
 											<b-form-group
 												:key="'menu_'+n"
