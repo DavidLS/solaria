@@ -87,6 +87,7 @@
 									/>
 								</b-form-group>
 							</b-col>
+							<!-- 
 							<b-col md="6">
 								<b-form-group 
 									label="¿Dónde quiere desayunar?"
@@ -103,7 +104,8 @@
 										<b-form-radio value="dining">Comedor</b-form-radio>
 									</b-form-radio-group>
 								</b-form-group>
-							</b-col>
+							</b-col> 
+							-->
 						</b-row>
 					</b-card-body>
 
