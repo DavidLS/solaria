@@ -181,7 +181,7 @@
 												<b-list-group-item>Té</b-list-group-item>
 												<b-list-group-item>Yogur Solaria</b-list-group-item>
 												<b-list-group-item>Porción de frutas frescas</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Jugo de fruta</b-list-group-item>
 												<b-list-group-item>Porción de pan blanco de molde Solaria</b-list-group-item>
 												<b-list-group-item>Porción de pan integral de molde Solaria</b-list-group-item>
 												<b-list-group-item>Huevos revueltos</b-list-group-item>
@@ -196,7 +196,7 @@
 												<b-list-group-item>Café</b-list-group-item>
 												<b-list-group-item>Té</b-list-group-item>
 												<b-list-group-item>Leche</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Jugo de fruta</b-list-group-item>
 												<b-list-group-item>Porción de pan blanco de molde Solaria</b-list-group-item>
 												<b-list-group-item>Porción de huevo revuelto</b-list-group-item>
 												<b-list-group-item>Mermelada</b-list-group-item>
@@ -223,7 +223,7 @@
 												<b-list-group-item>Granola Solaria</b-list-group-item>
 												<b-list-group-item>Porción de frutas</b-list-group-item>
 												<b-list-group-item>Yogurt natural Solaria</b-list-group-item>
-												<b-list-group-item>Jugo de naranja</b-list-group-item>
+												<b-list-group-item>Jugo de fruta</b-list-group-item>
 												<b-list-group-item>Variedad de panes Solaria</b-list-group-item>
 												<b-list-group-item>Mantequilla</b-list-group-item>
 												<b-list-group-item>Huevo revuelto</b-list-group-item>
