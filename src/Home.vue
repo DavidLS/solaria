@@ -454,16 +454,16 @@
 		computed:{
 			filteredTimeWindows: function () {
 				const orders = store.state.orders;
-
+				const maxOrdersPerTime = 4;
 				let choicesRaw = [
-					{ value: null, text: 'Seleccione un horario', count: 2},
-					{ value: '08:00', text: '08:00', count: 2 },
-					{ value: '08:30', text: '08:30', count: 2 },
-					{ value: '09:00', text: '09:00', count: 2 },
-					{ value: '09:30', text: '09:30', count: 2 },
-					{ value: '10:00', text: '10:00', count: 2 },
-					{ value: '10:30', text: '10:30', count: 2 },
-					{ value: '11:00', text: '11:00', count: 2 },
+					{ value: null, text: 'Seleccione un horario', count: maxOrdersPerTime},
+					{ value: '08:00', text: '08:00', count: maxOrdersPerTime },
+					{ value: '08:30', text: '08:30', count: maxOrdersPerTime },
+					{ value: '09:00', text: '09:00', count: maxOrdersPerTime },
+					{ value: '09:30', text: '09:30', count: maxOrdersPerTime },
+					{ value: '10:00', text: '10:00', count: maxOrdersPerTime },
+					{ value: '10:30', text: '10:30', count: maxOrdersPerTime },
+					{ value: '11:00', text: '11:00', count: maxOrdersPerTime },
 				];
 
 				orders.forEach(order => {
