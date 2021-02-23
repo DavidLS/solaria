@@ -297,10 +297,13 @@
 	import store from '../store';
 
 	const now = new Date();
+	const todayAtNoon = new Date();
+	todayAtNoon.setHours(12,0,0,0);
+	const isBeforeNoon = now <= todayAtNoon;
 	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 	//const todayString = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 	const minDate = new Date(today);
-	minDate.setDate(minDate.getDate());
+	minDate.setDate(minDate.getDate() + (isBeforeNoon? 0:1) );
 	const maxDate = new Date(today);
 	maxDate.setDate(maxDate.getDate() + 2);
 
