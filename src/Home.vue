@@ -232,7 +232,6 @@
 												<b-list-group-item>Jamón</b-list-group-item>
 												<b-list-group-item>Queso</b-list-group-item>
 												<b-list-group-item>Palta molida </b-list-group-item>
-												<b-list-group-item>Mermelada Solaria</b-list-group-item>
 												<b-list-group-item>Porción de pastelería Solaria</b-list-group-item>
 												<b-list-group-item>Medialuna Solaria</b-list-group-item>
 											</b-list-group>
@@ -299,7 +298,7 @@
 
 	const now = new Date();
 	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-	const todayString = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+	//const todayString = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
 	const minDate = new Date(today);
 	minDate.setDate(minDate.getDate());
 	const maxDate = new Date(today);
@@ -467,7 +466,7 @@
 				];
 
 				orders.forEach(order => {
-					let key = choicesRaw.findIndex(function(choice, index) {
+					let key = choicesRaw.findIndex(function(choice) {
 						if(choice.value == order.time)
 							return true;
 					});
