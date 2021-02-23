@@ -305,7 +305,7 @@
 	const minDate = new Date(today);
 	minDate.setDate(minDate.getDate() + (isBeforeNoon? 0:1) );
 	const maxDate = new Date(today);
-	maxDate.setDate(maxDate.getDate() + 2);
+	maxDate.setDate(maxDate.getDate() + (isBeforeNoon? 2:3));
 
 	export default {
 		name: 'home',
