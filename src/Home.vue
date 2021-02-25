@@ -401,7 +401,6 @@
 						selectedMenuType.push(menuType);
 					}
 				});
-
 				// const rawSelectedProducts = this.form.selectedProducts;
 				// let selectedProducts = [];
 				// rawSelectedProducts.forEach(productsRaw => {
@@ -423,7 +422,6 @@
 				// 		}
 				// 	});
 				// });
-
 				const order = {
 					email: this.form.email,
 					name: this.form.name,
