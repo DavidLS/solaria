@@ -343,11 +343,9 @@
 				],
 				
 				tabSelected: 0,
-
 				success: store.state.success,
 				error: store.state.error,
 				loading: store.state.loading,
-
 				min: minDate,
 				max: maxDate,
 			}
