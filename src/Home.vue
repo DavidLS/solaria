@@ -76,9 +76,9 @@
 							<b-col md="6">
 								<b-form-group
 									id="input-group-6"
-									label="Hora para desayunar"
+									label="Hora para desayunar (puede haber demoras de hasta 15 minutos)"
 									label-for="time-1"
-									description="Breakfast time"
+									description="Breakfast time (up to 15' delays may happen)"
 									class="py-3"
 								>
 									<b-form-select 
