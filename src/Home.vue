@@ -31,6 +31,8 @@
 									<b-form-input
 										id="input-1"
 										v-model="form.name"
+										type="number"
+										min="1"
 										required
 										placeholder="Introduzca su número de habitación"
 									></b-form-input>
